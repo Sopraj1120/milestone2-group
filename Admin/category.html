@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Category Management</title>
+    <link rel="icon" href="..\Sourse\logo 1.png" type="image/png">
+    <link rel="stylesheet" href="adminstyle.css">
+</head>
+
+<body>
+    <header>
+        <div class="logo">
+            <img src="..\Sourse\logo 1.png" alt="Unicorn Entertainment Logo">
+        </div>
+        <nav>
+            <ul>
+                <li><a href="admin.html">Dashboard</a></li>
+                <li><a href="category.html">Category</a></li>
+                <li><a href="User.html">Users</a></li>
+                <li><a href="notification.html">Notifications</a></li>
+                <li><a href="rentals.html">Rentals</a></li>
+                <li><a href="report.html">Reports</a></li>
+            </ul>
+        </nav>
+    </header>
+    <div class="dashboard">
+        <h1>Category Management</h1>
+        <button id="add-movie-btn">Add Movie</button>
+        <table>
+            <thead>
+                <tr>
+                    <th>Category ID</th>
+                    <th>Category Name</th>
+                    <th>Number of Movies</th>
+                    <th>View</th>
+                </tr>
+            </thead>
+            <tbody id="category-table-body">
+                <tr data-category-id="1">
+                    <td>1</td>
+                    <td>Action</td>
+                    <td class="movie-count">0</td>
+                    <td><button class="view-btn" data-category-id="1">View</button></td>
+                </tr>
+                <tr data-category-id="2">
+                    <td>2</td>
+                    <td>Comedy</td>
+                    <td class="movie-count">0</td>
+                    <td><button class="view-btn" data-category-id="2">View</button></td>
+                </tr>
+                <tr data-category-id="3">
+                    <td>3</td>
+                    <td>Series</td>
+                    <td class="movie-count">0</td>
+                    <td><button class="view-btn" data-category-id="3">View</button></td>
+                </tr>
+                <tr data-category-id="4">
+                    <td>4</td>
+                    <td>Horror</td>
+                    <td class="movie-count">0</td>
+                    <td><button class="view-btn" data-category-id="4">View</button></td>
+                </tr>
+                <tr data-category-id="5">
+                    <td>5</td>
+                    <td>Kids</td>
+                    <td class="movie-count">0</td>
+                    <td><button class="view-btn" data-category-id="5">View</button></td>
+                </tr>
+                <tr data-category-id="6">
+                    <td>6</td>
+                    <td>Sci-Fi</td>
+                    <td class="movie-count">0</td>
+                    <td><button class="view-btn" data-category-id="6">View</button></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- Modal for adding a movie -->
+        <div id="add-movie-modal" class="modal" style="display: none;">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <h2>Add Movie</h2>
+                <form id="add-movie-form">
+                    <label for="movie-title">Title:</label>
+                    <input type="text" id="movie-title" name="movie-title" required>
+                    <label for="movie-description">Description:</label>
+                    <input type="text" id="movie-description" name="movie-description" required>
+                    <label for="no_of_copies">Number of Copies:</label>
+                    <input type="number" id="no_of_copies" name="no_of_copies" required>
+                    <label for="movie-category">Category:</label>
+                    <select id="movie-category" name="movie-category" required>
+                        <option value="1">Action</option>
+                        <option value="2">Comedy</option>
+                        <option value="3">Series</option>
+                        <option value="4">Horror</option>
+                        <option value="5">Kids</option>
+                        <option value="6">Sci-Fi</option>
+                    </select>
+                    <label for="movie-image-url">Image URL:</label>
+                    <input type="url" id="movie-image-url" name="movie-image-url" required>
+                    <button type="submit">Add Movie</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Sections for each category to show movies -->
+        <div id="category-movies">
+            <div id="movies-1" class="movies-section">
+                <h2>Action Movies</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Title</th>
+                            <th>Description</th>
+                            <th>Copies</th>
+                            <th>Image</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Action movies will be displayed here -->
+                    </tbody>
+                </table>
+            </div>
+            <div id="movies-2" class="movies-section">
+                <h2>Comedy Movies</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Title</th>
+                            <th>Description</th>
+                            <th>Copies</th>
+                            <th>Image</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Comedy movies will be displayed here -->
+                    </tbody>
+                </table>
+            </div>
+            <div id="movies-3" class="movies-section">
+                <h2>Series</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Title</th>
+                            <th>Description</th>
+                            <th>Copies</th>
+                            <th>Image</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Series movies will be displayed here -->
+                    </tbody>
+                </table>
+            </div>
+            <div id="movies-4" class="movies-section">
+                <h2>Horror Movies</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Title</th>
+                            <th>Description</th>
+                            <th>Copies</th>
+                            <th>Image</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Horror movies will be displayed here -->
+                    </tbody>
+                </table>
+            </div>
+            <div id="movies-5" class="movies-section">
+                <h2>Kids Movies</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Title</th>
+                            <th>Description</th>
+                            <th>Copies</th>
+                            <th>Image</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Kids movies will be displayed here -->
+                    </tbody>
+                </table>
+            </div>
+            <div id="movies-6" class="movies-section">
+                <h2>Sci-Fi</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Title</th>
+                            <th>Description</th>
+                            <th>Copies</th>
+                            <th>Image</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Events movies will be displayed here -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <footer>
+        <div class="footer-content">
+            <p>About Us Contact Terms of Service Privacy Policy</p>
+            <div class="social-media">
+                <a href="#"><img src="..\Sourse\Facebook.png" alt="Facebook" class="Socialmedia"></a>
+                <a href="#"><img src="..\Sourse\Instagram.png" alt="Instagram" class="Socialmedia"></a>
+                <a href="#"><img src="..\Sourse\LinkedIn.png" alt="LinkedIn" class="Socialmedia"></a>
+                <a href="#"><img src="..\Sourse\Pinterest.png" alt="Pinterest" class="Socialmedia"></a>
+                <a href="#"><img src="..\Sourse\Twitter.png" alt="Twitter" class="Socialmedia"></a>
+            </div>
+            <div class="copyright">
+                &copy; 2024 Unicorn Entertainment
+            </div>
+        </div>
+    </footer>
+    <script>
+          document.addEventListener("DOMContentLoaded", () => {
+            const addMovieBtn = document.getElementById("add-movie-btn");
+            const modal = document.getElementById("add-movie-modal");
+            const closeModal = document.querySelector(".close");
+            const addMovieForm = document.getElementById("add-movie-form");
+            let editMode = false;
+            let editRow = null;
+
+            // Open the modal when the Add Movie button is clicked
+            addMovieBtn.addEventListener("click", () => {
+                modal.style.display = "block";
+            });
+
+            // Close the modal
+            closeModal.addEventListener("click", () => {
+                modal.style.display = "none";
+                resetForm();
+            });
+
+            // Handle form submission
+            addMovieForm.addEventListener("submit", (event) => {
+                event.preventDefault();
+
+                const movieTitle = document.getElementById("movie-title").value;
+                const movieDescription = document.getElementById("movie-description").value;
+                const numberOfCopies = parseInt(document.getElementById("no_of_copies").value);
+                const movieCategory = document.getElementById("movie-category").value;
+                const movieImageUrl = document.getElementById("movie-image-url").value;
+
+                // Create the movie object
+                const movieData = {
+                    title: movieTitle,
+                    description: movieDescription,
+                    copies: numberOfCopies,
+                    categoryId: movieCategory,
+                    imageUrl: movieImageUrl,
+                };
+
+                // Send a POST request to add the movie
+                fetch("http://localhost:3000/movies", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify(movieData),
+                })
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error("Network response was not ok");
+                        }
+                        return response.json();
+                    })
+                    .then(data => {
+                        // Successfully added the movie, update the movie count for the category
+                        updateMovieCount(movieCategory);
+                        modal.style.display = "none"; // Close the modal
+                        resetForm(); // Reset form fields
+                        
+                    })
+                    .catch(error => {
+                        console.error("There was a problem with the fetch operation:", error);
+                    });
+            });
+
+            // Function to update the movie count for the category
+            function updateMovieCount(categoryId) {
+                const movieCount = getCategoryMovies(categoryId).length;
+                const categoryRow = document.querySelector(`tr[data-category-id="${categoryId}"] td:nth-child(3)`);
+                categoryRow.textContent = movieCount; // Increment the count by 1
+            }
+
+            // Function to reset the form fields
+            function resetForm() {
+                addMovieForm.reset();
+            }
+
+            // Handle View button click
+            const viewButtons = document.querySelectorAll(".view-btn");
+            viewButtons.forEach(button => {
+                button.addEventListener("click", (event) => {
+                    const categoryId = event.target.getAttribute("data-category-id");
+                    fetchMoviesByCategory(categoryId);
+                });
+            });
+
+            // Function to fetch and display movies by category
+            function fetchMoviesByCategory(categoryId) {
+                // Hide all movie sections
+                document.querySelectorAll('.movies-section').forEach(section => {
+                    section.style.display = 'none';
+                });
+                // Show the selected category's movie section
+                const selectedSection = document.getElementById(`movies-${categoryId}`);
+                selectedSection.style.display = 'block';
+
+                // Fetch movies for the selected category
+                fetch(`http://localhost:3000/movies?categoryId=${categoryId}`)
+                    .then(response => response.json())
+                    .then(movies => {
+                        const tbody = selectedSection.querySelector('tbody');
+                        tbody.innerHTML = ''; // Clear previous movies
+                        movies.forEach(movie => {
+                            const row = document.createElement('tr');
+                            row.innerHTML = `
+                                <td>${movie.title}</td>
+                                <td>${movie.description}</td>
+                                <td>${movie.copies}</td>
+                                <td><img src="${movie.imageUrl}" alt="${movie.title}" width="50"></td>
+                                <td><button class="delete-btn" data-id="${movie.id}">Delete</button></td>
+                            `;
+                            tbody.appendChild(row);
+                           
+                        });
+                    })
+                    .catch(error => {
+                        console.error("Error fetching movies:", error);
+                    });
+            }
+
+            // Function to add event listeners to delete buttons
+
+
+            function deleteMovie(movieId) {
+                if (confirm("Are you sure you want to delete this movie?")) {
+                    fetch(`http://localhost:3000/movies/${movieId}`, {
+                        method: "DELETE",
+                    })
+                        .then(response => {
+                            console.log("Response Status:", response.status);
+                            console.log("Response OK:", response.ok);
+                            if (!response.ok) {
+                                throw new Error("Network response was not ok");
+                            }
+                            const categoryMovies = getCategoryMovies(categoryId);
+                            const movieIndex = Array.from(row.parentNode.children).indexOf(row);
+                            categoryMovies.splice(movieIndex, 1);
+                            setCategoryMovies(categoryId, categoryMovies);
+                            row.remove();
+                            updateMovieCount(categoryId);
+                        })
+                        .catch(error => {
+                            console.error("There was a problem with the fetch operation:", error);
+                            alert("Failed to delete the movie. Please try again.");
+                        });
+                }
+            }
+
+        });
+    </script>
+
+
+</body>
+
+</html>

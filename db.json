@@ -1,0 +1,439 @@
+{
+  "admin": [
+    {
+      "id": "cd57",
+      "adminId": "ADM-DLHOLOMI1",
+      "email": "a@gmail.com",
+      "password": "634b4126ca8905152a81a25e72e3be58435785f7e8bc846498fe7113703d1f2c"
+    },
+    {
+      "id": "cf5e",
+      "adminId": "ADM-OWZRUNRT6",
+      "email": "a@gmail.com",
+      "password": "634b4126ca8905152a81a25e72e3be58435785f7e8bc846498fe7113703d1f2c"
+    },
+    {
+      "id": "0094",
+      "adminId": "ADM-04LP79R51",
+      "email": "a@gmail.com",
+      "password": "0f8ef3377b30fc47f96b48247f463a726a802f62f3faa03d56403751d2f66c67"
+    }
+  ],
+  "Customers": [
+    {
+      "id": "4936",
+      "firstName": "a",
+      "lastName": "a",
+      "address": "jaffna",
+      "email": "b@gmail.com",
+      "password": "User123456@",
+      "mobileNo": "0771234567",
+      "nicNo": "20001234567",
+      "userName": "a123"
+    },
+    {
+      "id": "0e69",
+      "firstName": "b",
+      "lastName": "c",
+      "address": "jaffna",
+      "email": "ba@gmail.com",
+      "password": "User987654@",
+      "mobileNo": "0771239845",
+      "nicNo": "200098765412",
+      "userName": "ab987"
+    },
+    {
+      "id": "23fe",
+      "firstName": "ac",
+      "lastName": "d",
+      "address": "jaffna",
+      "email": "bac@gmail.com",
+      "password": "User789456@",
+      "mobileNo": "0771239845",
+      "nicNo": "200098765412",
+      "userName": "abc987"
+    },
+    {
+      "id": "74bd",
+      "firstName": "xyz",
+      "lastName": "w",
+      "address": "jaffna",
+      "email": "xyzw@gmail.com",
+      "password": "Xyzw123456@",
+      "mobileNo": "0777123456",
+      "nicNo": "200112364789",
+      "userName": "xyz21"
+    },
+    {
+      "id": "eb2a",
+      "firstName": "adyt",
+      "lastName": "asd",
+      "address": "jaf",
+      "email": "a@gmail.com",
+      "password": "a123",
+      "mobileNo": "0771234567",
+      "nicNo": "123456789v",
+      "userName": "aer"
+    },
+    {
+      "id": "c7b8",
+      "firstName": "adyt",
+      "lastName": "asd",
+      "address": "jaf",
+      "email": "a@gmail.com",
+      "password": "a1234",
+      "mobileNo": "0771234567",
+      "nicNo": "123456789v",
+      "userName": "aer"
+    },
+    {
+      "id": "3d6d",
+      "firstName": "adyt",
+      "lastName": "asd",
+      "address": "jaf",
+      "email": "a@gmail.com",
+      "password": "125",
+      "mobileNo": "0771234567",
+      "nicNo": "123456789v",
+      "userName": "aer"
+    },
+    {
+      "id": "6d09",
+      "firstName": "adyt",
+      "lastName": "asd",
+      "address": "jaf",
+      "email": "a@gmail.com",
+      "password": "a",
+      "mobileNo": "0771234567",
+      "nicNo": "123456789v",
+      "userName": "aer"
+    },
+    {
+      "id": "efba",
+      "firstName": "adyt",
+      "lastName": "asd",
+      "address": "jaf",
+      "email": "a@gmail.com",
+      "password": "a",
+      "mobileNo": "0771234567",
+      "nicNo": "123456789v",
+      "userName": "aer"
+    }
+  ],
+  "categories": [
+    {
+      "id": "1",
+      "name": "Action"
+    },
+    {
+      "id": "2",
+      "name": "Comedy"
+    },
+    {
+      "id": "3",
+      "name": "Series"
+    },
+    {
+      "id": "4",
+      "name": "Horror"
+    },
+    {
+      "id": "5",
+      "name": "Kids"
+    },
+    {
+      "id": "6",
+      "name": "Sci-Fi"
+    }
+  ],
+  "movies": [
+    {
+      "id": "771b",
+      "title": "Kalki 2898 AD",
+      "description": "8.1/10 (23K) Director: Nag Ashwin Writer: Nag Ashwin Stars: Prabhas, Amitabh Bachchan, Kamal Haasan Genre: Action, Adventure, Drama Release Date: 2024-06-27 A modern-day avatar of Vishnu, a Hindu god, who is believed to have descended to earth to protect the world from evil forces.",
+      "no_of_copies": "15",
+      "categoryId": 1,
+      "imageUrl": "https://th.bing.com/th?id=OIP.YUaAu1EL1eoC10AUkPVd7wC-EZ&w=135&h=201&c=10&rs=1&qlt=90&o=6&dpr=1.3&pid=13.1"
+    },
+    {
+      "id": "a640",
+      "title": "Kalki 2898 AD",
+      "description": "8.1/10 (23K) Director: Nag Ashwin Writer: Nag Ashwin Stars: Prabhas, Amitabh Bachchan, Kamal Haasan Genre: Action, Adventure, Drama Release Date: 2024-06-27 A modern-day avatar of Vishnu, a Hindu god, who is believed to have descended to earth to protect the world from evil forces.",
+      "no_of_copies": "15",
+      "categoryId": 1,
+      "imageUrl": "https://th.bing.com/th?id=OIP.YUaAu1EL1eoC10AUkPVd7wC-EZ&w=135&h=201&c=10&rs=1&qlt=90&o=6&dpr=1.3&pid=13.1"
+    },
+    {
+      "id": "6b09",
+      "title": "Kalki 2898 AD",
+      "description": "8.1/10 (23K) Director: Nag Ashwin Writer: Nag Ashwin Stars: Prabhas, Amitabh Bachchan, Kamal Haasan Genre: Action, Adventure, Drama Release Date: 2024-06-27 A modern-day avatar of Vishnu, a Hindu god, who is believed to have descended to earth to protect the world from evil forces.",
+      "no_of_copies": "15",
+      "categoryId": 1,
+      "imageUrl": "https://th.bing.com/th?id=OIP.YUaAu1EL1eoC10AUkPVd7wC-EZ&w=135&h=201&c=10&rs=1&qlt=90&o=6&dpr=1.3&pid=13.1"
+    },
+    {
+      "id": "dd05",
+      "title": "Kalki 2898 AD",
+      "description": "8.1/10 (23K) Director: Nag Ashwin Writer: Nag Ashwin Stars: Prabhas, Amitabh Bachchan, Kamal Haasan Genre: Action, Adventure, Drama Release Date: 2024-06-27 A modern-day avatar of Vishnu, a Hindu god, who is believed to have descended to earth to protect the world from evil forces.",
+      "no_of_copies": "12",
+      "categoryId": 1,
+      "imageUrl": "https://th.bing.com/th?id=OIP.YUaAu1EL1eoC10AUkPVd7wC-EZ&w=135&h=201&c=10&rs=1&qlt=90&o=6&dpr=1.3&pid=13.1"
+    },
+    {
+      "id": "5296",
+      "title": "Kalki 2898 AD",
+      "description": "8.1/10 (23K) Director: Nag Ashwin Writer: Nag Ashwin Stars: Prabhas, Amitabh Bachchan, Kamal Haasan Genre: Action, Adventure, Drama Release Date: 2024-06-27 A modern-day avatar of Vishnu, a Hindu god, who is believed to have descended to earth to protect the world from evil forces.",
+      "no_of_copies": "11",
+      "categoryId": 1,
+      "imageUrl": "https://th.bing.com/th?id=OIP.YUaAu1EL1eoC10AUkPVd7wC-EZ&w=135&h=201&c=10&rs=1&qlt=90&o=6&dpr=1.3&pid=13.1"
+    },
+    {
+      "id": "00ed",
+      "title": "Kalki 2898 AD",
+      "description": "8.1/10 (23K) Director: Nag Ashwin Writer: Nag Ashwin Stars: Prabhas, Amitabh Bachchan, Kamal Haasan Genre: Action, Adventure, Drama Release Date: 2024-06-27 A modern-day avatar of Vishnu, a Hindu god, who is believed to have descended to earth to protect the world from evil forces.",
+      "no_of_copies": "11",
+      "categoryId": 1,
+      "imageUrl": "https://th.bing.com/th?id=OIP.YUaAu1EL1eoC10AUkPVd7wC-EZ&w=135&h=201&c=10&rs=1&qlt=90&o=6&dpr=1.3&pid=13.1"
+    },
+    {
+      "id": "6bf2",
+      "title": "Kalki 2898 AD",
+      "description": "8.1/10 (23K) Director: Nag Ashwin Writer: Nag Ashwin Stars: Prabhas, Amitabh Bachchan, Kamal Haasan Genre: Action, Adventure, Drama Release Date: 2024-06-27 A modern-day avatar of Vishnu, a Hindu god, who is believed to have descended to earth to protect the world from evil forces.",
+      "no_of_copies": "11",
+      "categoryId": 1,
+      "imageUrl": "https://th.bing.com/th?id=OIP.YUaAu1EL1eoC10AUkPVd7wC-EZ&w=135&h=201&c=10&rs=1&qlt=90&o=6&dpr=1.3&pid=13.1"
+    },
+    {
+      "id": "5d20",
+      "title": "Kalki 2898 AD",
+      "description": "8.1/10 (23K) Director: Nag Ashwin Writer: Nag Ashwin Stars: Prabhas, Amitabh Bachchan, Kamal Haasan Genre: Action, Adventure, Drama Release Date: 2024-06-27 A modern-day avatar of Vishnu, a Hindu god, who is believed to have descended to earth to protect the world from evil forces.",
+      "no_of_copies": "11",
+      "categoryId": 2,
+      "imageUrl": "https://th.bing.com/th?id=OIP.YUaAu1EL1eoC10AUkPVd7wC-EZ&w=135&h=201&c=10&rs=1&qlt=90&o=6&dpr=1.3&pid=13.1"
+    },
+    {
+      "id": "921d",
+      "title": "Kalki 2898 AD",
+      "description": "8.1/10 (23K) Director: Nag Ashwin Writer: Nag Ashwin Stars: Prabhas, Amitabh Bachchan, Kamal Haasan Genre: Action, Adventure, Drama Release Date: 2024-06-27 A modern-day avatar of Vishnu, a Hindu god, who is believed to have descended to earth to protect the world from evil forces.",
+      "no_of_copies": "18",
+      "categoryId": 2,
+      "imageUrl": "https://th.bing.com/th?id=OIP.YUaAu1EL1eoC10AUkPVd7wC-EZ&w=135&h=201&c=10&rs=1&qlt=90&o=6&dpr=1.3&pid=13.1"
+    },
+    {
+      "id": "e98e",
+      "title": "Kalki 2898 AD",
+      "description": "8.1/10 (23K) Director: Nag Ashwin Writer: Nag Ashwin Stars: Prabhas, Amitabh Bachchan, Kamal Haasan Genre: Action, Adventure, Drama Release Date: 2024-06-27 A modern-day avatar of Vishnu, a Hindu god, who is believed to have descended to earth to protect the world from evil forces.",
+      "no_of_copies": "18",
+      "categoryId": 3,
+      "imageUrl": "https://th.bing.com/th?id=OIP.YUaAu1EL1eoC10AUkPVd7wC-EZ&w=135&h=201&c=10&rs=1&qlt=90&o=6&dpr=1.3&pid=13.1"
+    },
+    {
+      "id": "d808",
+      "title": "Goat",
+      "description": "2024",
+      "copies": 15,
+      "categoryId": "1",
+      "imageUrl": "https://th.bing.com/th?id=OSK.FLdrbY3S3CCz08iT04C_12a4rjjW_hA_leuR7tLDlpk&w=312&h=200&c=3&rs=1&r=0&o=6&pid=SANGAM"
+    },
+    {
+      "id": "2f70",
+      "title": "Goat",
+      "description": "2024",
+      "copies": 15,
+      "categoryId": "1",
+      "imageUrl": "https://th.bing.com/th?id=OSK.FLdrbY3S3CCz08iT04C_12a4rjjW_hA_leuR7tLDlpk&w=312&h=200&c=3&rs=1&r=0&o=6&pid=SANGAM"
+    },
+    {
+      "id": "7a1b",
+      "title": "Goat",
+      "description": "2024",
+      "copies": 15,
+      "categoryId": "1",
+      "imageUrl": "https://th.bing.com/th?id=OSK.FLdrbY3S3CCz08iT04C_12a4rjjW_hA_leuR7tLDlpk&w=312&h=200&c=3&rs=1&r=0&o=6&pid=SANGAM"
+    },
+    {
+      "id": "be60",
+      "title": "Goat",
+      "description": "2024",
+      "copies": 15,
+      "categoryId": "1",
+      "imageUrl": "https://th.bing.com/th?id=OSK.FLdrbY3S3CCz08iT04C_12a4rjjW_hA_leuR7tLDlpk&w=312&h=200&c=3&rs=1&r=0&o=6&pid=SANGAM"
+    },
+    {
+      "id": "0070",
+      "title": "Goat",
+      "description": "2024",
+      "copies": 15,
+      "categoryId": "1",
+      "imageUrl": "https://th.bing.com/th?id=OSK.FLdrbY3S3CCz08iT04C_12a4rjjW_hA_leuR7tLDlpk&w=312&h=200&c=3&rs=1&r=0&o=6&pid=SANGAM"
+    },
+    {
+      "id": "8e88",
+      "title": "Goat",
+      "description": "2024",
+      "copies": 15,
+      "categoryId": "1",
+      "imageUrl": "https://th.bing.com/th?id=OSK.FLdrbY3S3CCz08iT04C_12a4rjjW_hA_leuR7tLDlpk&w=312&h=200&c=3&rs=1&r=0&o=6&pid=SANGAM"
+    },
+    {
+      "id": "452d",
+      "title": "Goat",
+      "description": "2024",
+      "copies": 15,
+      "categoryId": "2",
+      "imageUrl": "https://th.bing.com/th?id=OSK.FLdrbY3S3CCz08iT04C_12a4rjjW_hA_leuR7tLDlpk&w=312&h=200&c=3&rs=1&r=0&o=6&pid=SANGAM"
+    },
+    {
+      "id": "a3c3",
+      "title": "Goat",
+      "description": "2024",
+      "copies": 15,
+      "categoryId": "5",
+      "imageUrl": "https://th.bing.com/th?id=OSK.FLdrbY3S3CCz08iT04C_12a4rjjW_hA_leuR7tLDlpk&w=312&h=200&c=3&rs=1&r=0&o=6&pid=SANGAM"
+    }
+  ],
+  "rentalRequests": [
+    {
+      "id": "1",
+      "movieImage": "https://th.bing.com/th?id=OIP.YUaAu1EL1eoC10AUkPVd7wC-EZ&w=135&h=201&c=10&rs=1&qlt=90&o=6&dpr=1.3&pid=13.1",
+      "movieTitle": "Kalki 2898 AD",
+      "availableCopies": "10",
+      "status": "Returned",
+      "rentDate": "2024-10-01T09:21:48.725Z",
+      "returnDate": "2024-10-08T09:21:48.725Z"
+    },
+    {
+      "id": "2",
+      "movieImage": "https://th.bing.com/th?id=OIP.YUaAu1EL1eoC10AUkPVd7wC-EZ&w=135&h=201&c=10&rs=1&qlt=90&o=6&dpr=1.3&pid=13.1",
+      "movieTitle": "Kalki 2898 AD",
+      "availableCopies": "15",
+      "status": "Rejected",
+      "rentDate": "",
+      "returnDate": "",
+      "rejectionReason": "sds"
+    },
+    {
+      "id": "3758",
+      "movieId": "771b",
+      "movieTitle": "Kalki 2898 AD",
+      "status": "Returned",
+      "rentDate": "2024-10-01T09:25:24.770Z",
+      "returnDate": "2024-10-08T09:25:24.770Z"
+    },
+    {
+      "id": "2796",
+      "movieId": "771b",
+      "movieTitle": "Kalki 2898 AD",
+      "status": "Returned",
+      "rentDate": "2024-10-01T09:55:58.653Z",
+      "returnDate": "2024-10-08T09:55:58.653Z"
+    },
+    {
+      "id": "c676",
+      "movieId": "5d20",
+      "movieTitle": "Kalki 2898 AD",
+      "status": "Rejected",
+      "rentDate": "2024-10-01T09:35:01.489Z",
+      "rejectionReason": "qwe"
+    },
+    {
+      "id": "a101",
+      "movieId": "771b",
+      "movieTitle": "Kalki 2898 AD",
+      "status": "Rejected",
+      "rentDate": "2024-10-01T09:39:12.309Z",
+      "rejectionReason": "WAED"
+    },
+    {
+      "id": "9a18",
+      "movieId": "771b",
+      "movieTitle": "Kalki 2898 AD",
+      "movieImage": "https://th.bing.com/th?id=OIP.YUaAu1EL1eoC10AUkPVd7wC-EZ&w=135&h=201&c=10&rs=1&qlt=90&o=6&dpr=1.3&pid=13.1",
+      "availableCopies": "15",
+      "customerId": "YOUR_CUSTOMER_ID",
+      "customerName": "YOUR_CUSTOMER_NAME",
+      "categoryId": "1",
+      "status": "Rejected",
+      "rentDate": "2024-10-01T09:53:17.648Z",
+      "rejectionReason": "34"
+    },
+    {
+      "id": "0034",
+      "movieId": "00ed",
+      "movieTitle": "Kalki 2898 AD",
+      "movieImage": "https://th.bing.com/th?id=OIP.YUaAu1EL1eoC10AUkPVd7wC-EZ&w=135&h=201&c=10&rs=1&qlt=90&o=6&dpr=1.3&pid=13.1",
+      "availableCopies": "11",
+      "customerId": "YOUR_CUSTOMER_ID",
+      "customerName": "YOUR_CUSTOMER_NAME",
+      "categoryId": "1",
+      "status": "Returned",
+      "rentDate": "2024-10-01T09:56:20.201Z",
+      "returnDate": "2024-10-08T09:56:20.201Z"
+    },
+    {
+      "id": "2a53",
+      "movieId": "e98e",
+      "movieTitle": "Kalki 2898 AD",
+      "movieImage": "https://th.bing.com/th?id=OIP.YUaAu1EL1eoC10AUkPVd7wC-EZ&w=135&h=201&c=10&rs=1&qlt=90&o=6&dpr=1.3&pid=13.1",
+      "availableCopies": "18",
+      "customerId": "YOUR_CUSTOMER_ID",
+      "customerName": "YOUR_CUSTOMER_NAME",
+      "categoryId": "3",
+      "status": "Returned",
+      "rentDate": "2024-10-01T09:56:45.131Z",
+      "returnDate": "2024-10-08T09:56:45.131Z"
+    },
+    {
+      "id": "1ec5",
+      "movieId": "e98e",
+      "movieTitle": "Kalki 2898 AD",
+      "movieImage": "https://th.bing.com/th?id=OIP.YUaAu1EL1eoC10AUkPVd7wC-EZ&w=135&h=201&c=10&rs=1&qlt=90&o=6&dpr=1.3&pid=13.1",
+      "availableCopies": "18",
+      "customerId": "YOUR_CUSTOMER_ID",
+      "customerName": "YOUR_CUSTOMER_NAME",
+      "categoryId": "3",
+      "status": "Rejected",
+      "rentDate": "2024-10-01T09:56:55.939Z",
+      "rejectionReason": "ZC"
+    },
+    {
+      "id": "1c56",
+      "movieId": "a640",
+      "movieTitle": "Kalki 2898 AD",
+      "movieImage": "https://th.bing.com/th?id=OIP.YUaAu1EL1eoC10AUkPVd7wC-EZ&w=135&h=201&c=10&rs=1&qlt=90&o=6&dpr=1.3&pid=13.1",
+      "availableCopies": "15",
+      "customerId": "YOUR_CUSTOMER_ID",
+      "customerName": "YOUR_CUSTOMER_NAME",
+      "categoryId": "1",
+      "status": "Returned",
+      "rentDate": "2024-10-02T04:36:28.552Z",
+      "returnDate": "2024-10-09T04:36:28.552Z"
+    },
+    {
+      "id": "c53a",
+      "movieId": "771b",
+      "movieTitle": "Kalki 2898 AD",
+      "movieImage": "https://th.bing.com/th?id=OIP.YUaAu1EL1eoC10AUkPVd7wC-EZ&w=135&h=201&c=10&rs=1&qlt=90&o=6&dpr=1.3&pid=13.1",
+      "availableCopies": "15",
+      "customerId": "YOUR_CUSTOMER_ID",
+      "customerName": "YOUR_CUSTOMER_NAME",
+      "categoryId": "1",
+      "status": "Returned",
+      "rentDate": "2024-10-02T04:54:55.662Z",
+      "returnDate": "2024-10-09T04:54:55.662Z"
+    },
+    {
+      "id": "1f43",
+      "movieId": "be60",
+      "movieTitle": "Goat",
+      "movieImage": "https://th.bing.com/th?id=OSK.FLdrbY3S3CCz08iT04C_12a4rjjW_hA_leuR7tLDlpk&w=312&h=200&c=3&rs=1&r=0&o=6&pid=SANGAM",
+      "availableCopies": "undefined",
+      "customerId": "YOUR_CUSTOMER_ID",
+      "customerName": "YOUR_CUSTOMER_NAME",
+      "categoryId": "1",
+      "status": "Returned",
+      "rentDate": "2024-10-04T05:38:47.733Z",
+      "returnDate": "2024-10-11T05:38:47.733Z"
+    }
+  ]
+}

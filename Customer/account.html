@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Account</title>
+    <link rel="icon" href="..\Sourse\logo 1.png" type="image/png">
+    <link rel="stylesheet" href="memberstyles.css">
+    <style>
+     
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="..\Sourse\logo 1.png" alt="Unicorn Entertainment Logo">
+        </div>
+        <nav>
+            <div class="search-container">
+               
+            </div>
+            <ul>
+                <li><a href="userhome.html">Home</a></li>
+                <li><a href="rental.html">My Rentals</a></li>
+                <li><a href="account.html">My Account</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="content">
+        <h1>My Account</h1>
+
+        <div class="account-info">
+            <h2>Account Information</h2>
+            <div class="form-group">
+                <label for="profile-image">
+                    <img src="Vector (2).png" alt="User Image" class="user-image" id="user-image">
+                </label>
+                <input type="file" id="profile-image" name="profile-image" accept="image/*">
+            </div>
+            <form id="account-info-form">
+                <div class="form-group">
+                    <label for="username">Username:</label>
+                    <input type="text" id="username" name="username" value="" disabled>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" value="">
+                </div>
+               
+                <div class="form-group">
+                    <label for="nic-no">NIC Number:</label>
+                    <input type="text" id="nic-no" name="nic-no" value="" disabled>
+                </div>
+                <div class="form-group">
+                    <label for="address">Address:</label>
+                    <input type="text" id="address" name="address" value="">
+                </div>
+                <div class="form-group">
+                    <label for="mobile-no">Mobile Number:</label>
+                    <input type="text" id="mobile-no" name="mobile-no" value="">
+                </div>
+                <div class="form-group">
+                    <button type="submit">Update Account</button>
+                </div>
+            </form>
+            <button class="logout-button" id="logout-button">Logout</button>
+        </div>
+    
+
+    <footer>
+        <div class="footer-content">
+            <p>About Us Contact Terms of Service Privacy Policy</p>
+            <div class="social-media">
+                <a href="#"><img src="..\Sourse\Facebook.png" alt="Facebook" class="Socialmedia"></a>
+                <a href="#"><img src="..\Sourse\Instagram.png" alt="Instagram" class="Socialmedia"></a>
+                <a href="#"><img src="..\Sourse\LinkedIn.png" alt="LinkedIn" class="Socialmedia"></a>
+                <a href="#"><img src="..\Sourse\Pinterest.png" alt="Pinterest" class="Socialmedia"></a>
+                <a href="#"><img src="..\Sourse\Twitter.png" alt="Twitter" class="Socialmedia"></a>
+                <a href="#"><img src="..\Sourse\TwitterX.png" alt="TwitterX" class="Socialmedia"></a>
+            </div>
+            <div class="copywrite">
+                &copy; 2024 Unicorn Entertainment
+            </div>
+        </div>
+    </footer>
+    
+    <script>
+       document.addEventListener("DOMContentLoaded", () => {
+    const accountForm = document.getElementById("account-info-form");
+    const logoutButton = document.getElementById("logout-button");
+    const profileImageInput = document.getElementById("profile-image");
+
+    // Load account info and rental history when the page is loaded
+    loadAccountInfo();
+    loadRentalHistory();
+
+    // Handle form submission
+    accountForm.addEventListener("submit", async (event) => {
+        event.preventDefault();
+        
+        const email = document.getElementById("email").value;
+        const password = document.getElementById("password").value;
+        const address = document.getElementById("address").value;
+        const mobileNo = document.getElementById("mobile-no").value;
+
+        // Validate email format
+        if (!validateEmail(email)) {
+            alert("Please enter a valid email address.");
+            return;
+        }
+
+        // Create form data object (username and NIC are not sent)
+        const formData = new FormData();
+        formData.append('email', email);
+        formData.append('password', password ? password : undefined); // Only include password if provided
+        formData.append('address', address);
+        formData.append('mobileNo', mobileNo);
+
+        // Append profile image if selected
+        if (profileImageInput.files[0]) {
+            formData.append('profile-image', profileImageInput.files[0]);
+        }
+
+        try {
+            // Call function to update account info
+            const response = await updateAccountInfo(formData);
+
+            if (response.success) {
+                alert("Account updated successfully.");
+                // Reload account info to reflect changes
+                loadAccountInfo();
+            } else {
+                alert("Failed to update account. Please try again.");
+            }
+        } catch (error) {
+            console.error("Error updating account:", error);
+            alert("An error occurred. Please try again.");
+        }
+    });
+
+    // Handle logout
+    logoutButton.addEventListener("click", () => {
+        localStorage.removeItem('userData'); // Clear user data
+        window.location.href = 'memberlogin.html'; // Redirect to login page
+    });
+
+    // Function to load account info from local storage
+    function loadAccountInfo() {
+        const userData = JSON.parse('Customers');
+
+        if (userData) {
+            document.getElementById("username").value = userData.username || "";
+            document.getElementById("email").value = userData.email || "";
+            document.getElementById("nic-no").value = userData.nicNo || "";
+            document.getElementById("address").value = userData.address || "";
+            document.getElementById("mobile-no").value = userData.mobileNo || "";
+            document.getElementById("user-image").src = userData.userImage || "images/default-user-image.png";
+            // Optionally, you could set more fields here
+        } else {
+            console.error("No user data found in local storage.");
+        }
+    }
+
+
+    // Function to validate email format
+    function validateEmail(email) {
+        const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return re.test(email);
+    }
+
+    // Function to update account info
+    async function updateAccountInfo(formData) {
+        try {
+            const response = await fetch("http://localhost:3000/admin", { // Updated endpoint
+                method: "POST",
+                body: formData,
+            });
+            return await response.json();
+        } catch (error) {
+            console.error("Error updating account info:", error);
+            throw error;
+        }
+    }
+});
+
+    </script>
+
+</body>
+</html>
