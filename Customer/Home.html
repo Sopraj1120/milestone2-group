@@ -7,7 +7,9 @@
     <link rel="icon" href="..\Sourse\logo 1.png" type="image/png">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="memberstyles.css">
-    
+    <style>
+     
+    </style>
 </head>
 <body>
     <div class="container">
@@ -18,15 +20,20 @@
             <nav>
                 <ul>
                     <li><a href="home.html">Home</a></li>
-                    <li><a href="memberlogin.html">SignIn/SignUp</a></li>
+                    <li><a href="login.html">SignIn/SignUp</a></li>
                 </ul>
             </nav>
         </header>
+        <br>
+        <br>
 
         <div class="dashboard">
             <h1>Welcome to Unicorn Entertainment</h1>
             <h3>Bringing Fantasy to Your Screen!</h3>
-            <div id="movies-container"></div>
+            <div id="movies-container">
+
+
+            </div>
 
         </div>
 
@@ -82,8 +89,8 @@
                         <img src="${movie.imageUrl}" alt="${movie.title}" />
                         <p><strong>Titel:</strong>${movie.title}</p>
                         <p><strong>Number of Copies:</strong> ${movie.no_of_copies}</p>
-                        <p><strong>Category ID:</strong> ${movie.categoryId}</p>
-               <a href="movie.html?movieId=${movie.id}" class="rent-btn">Rent</a>
+                        <p><strong>Category ID:</strong> ${movie.categoryId}</p><br>
+                        <a style="text-decoration:" href="movie.html?movieId=${movie.id}" class="rent-btn">Rent</a>
 
                     </div>
                     <hr/>

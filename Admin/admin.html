@@ -62,8 +62,8 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            const moviesUrl = 'http://localhost:5000/movies';
-            const userurl = 'http://localhost:5000/Customers';
+            const moviesUrl = 'http://localhost:3000/movies';
+            const userurl = 'http://localhost:3000/Customers';
             const activerentalurl = 'http://localhost:3000/rentalRequests';
 
             // Function to fetch movies and count the total
@@ -88,9 +88,21 @@
                     .catch(error => console.error('Error fetching customers:', error));
             }
 
+            // Function to fetch rental and count the total
+            function countTotalRentalActive() {
+                fetch(activerentalurl)
+                    .then(response => response.json())
+                    .then(rentalRequests => {
+                        const totalRentalActive = rentalRequests.length;
+                        document.getElementById('active-rentals').textContent = `${totalRentalActive}`;
+                    })
+                    .catch(error => console.error('Error fetching rentalActive:', error));
+            }
+
             // Call the functions to count total movies and customers
             countTotalMovies();
             countTotalCustomer();
+            countTotalRentalActive();
         });
     </script>
 </body>

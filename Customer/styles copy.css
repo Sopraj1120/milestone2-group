@@ -242,6 +242,10 @@ footer .social_media_Icons
 display: flex;
 
 }
+.dashboard h1{
+    
+    margin-bottom: 20px;
+}
 footer .social_media_Icons img {
     width: 30px;
     height: 30px;
