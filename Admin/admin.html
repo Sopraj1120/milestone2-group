@@ -61,37 +61,52 @@
     </div>
 
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const moviesUrl = 'http://localhost:5000/movies';
-            const userurl = 'http://localhost:5000/Customers';
-            const activerentalurl = 'http://localhost:3000/rentalRequests';
+   document.addEventListener('DOMContentLoaded', () => {
+    const moviesUrl = 'http://localhost:3000/movies';
+    const userurl = 'http://localhost:3000/Customers';
+    const activerentalurl = 'http://localhost:3000/rentalRequests';
 
-            // Function to fetch movies and count the total
-            function countTotalMovies() {
-                fetch(moviesUrl)
-                    .then(response => response.json())
-                    .then(movies => {
-                        const totalMovies = movies.length;
-                        document.getElementById('total-movies').textContent = `${totalMovies}`;
-                    })
-                    .catch(error => console.error('Error fetching movies:', error));
-            }
+    // Function to fetch movies and count the total
+    function countTotalMovies() {
+        fetch(moviesUrl)
+            .then(response => response.json())
+            .then(movies => {
+                const totalMovies = movies.length;
+                document.getElementById('total-movies').textContent = `${totalMovies}`;
+            })
+            .catch(error => console.error('Error fetching movies:', error));
+    }
 
-            // Function to fetch users and count the total
-            function countTotalCustomer() {
-                fetch(userurl)
-                    .then(response => response.json())
-                    .then(customers => {
-                        const totalCustomers = customers.length;
-                        document.getElementById('total-users').textContent = `${totalCustomers}`;
-                    })
-                    .catch(error => console.error('Error fetching customers:', error));
-            }
+    // Function to fetch users and count the total
+    function countTotalCustomer() {
+        fetch(userurl)
+            .then(response => response.json())
+            .then(customers => {
+                const totalCustomers = customers.length;
+                document.getElementById('total-users').textContent = `${totalCustomers}`;
+            })
+            .catch(error => console.error('Error fetching customers:', error));
+    }
 
-            // Call the functions to count total movies and customers
-            countTotalMovies();
-            countTotalCustomer();
-        });
+    // Function to fetch active rentals and count those with status 'accept'
+    function countTotalActive() {
+        fetch(activerentalurl)
+            .then(res => res.json())
+            .then(rentals => {
+                // Filter rentals where status is 'accept'
+                const acceptedRentals = rentals.filter(rental => rental.status === 'Approved');
+                const totalActiveRental = acceptedRentals.length;
+                document.getElementById('active-rentals').textContent = `${totalActiveRental}`;
+            })
+            .catch(error => console.error('Error fetching ActiveRentals:', error));
+    }
+
+    // Call the functions to count total movies, customers, and active rentals
+    countTotalMovies();
+    countTotalCustomer();
+    countTotalActive();
+});
+
     </script>
 </body>
 

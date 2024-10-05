@@ -52,7 +52,7 @@
             </div>
             <div class="register_login">
                 <p class="acc">Don't have an account?</p>
-                <p class="register"><a href="MemberRegister.html" style="color: #ffffff;">Register</a></p>
+                <p class="register"><a href="userregister.html" style="color: #ffffff;">Register</a></p>
             </div>
         </footer>
     </div>
@@ -63,44 +63,46 @@
             const emailInput = document.getElementById('owner-id');
             const passwordInput = document.getElementById('password');
             const rememberMe = document.getElementById('remember-me');
+            const emailError = document.getElementById('owner-id-error');
+            const passwordError = document.getElementById('password-error');
 
-            signinForm.addEventListener('submit', function (event) {
+            signinForm.addEventListener('submit', async function (event) {
                 event.preventDefault(); // Prevent default form submission
 
-                const storedUserData = JSON.parse(localStorage.getItem('userData'));
-                const emailError = document.getElementById('owner-id-error');
-                const passwordError = document.getElementById('password-error');
+                // Clear previous error messages
+                emailError.textContent = '';
+                passwordError.textContent = '';
 
-                // Validate input
-                if (!storedUserData) {
-                    alert("No user found. Please register first.");
-                    window.location.href = 'MemberRegister.html';
-                } else if (emailInput.value !== storedUserData.email) {
-                    emailError.textContent = "Email not found.";
-                } else if (passwordInput.value !== storedUserData.password) {
-                    passwordError.textContent = "Incorrect password.";
+                // Fetch admin users from the JSON server
+                const response = await fetch('http://localhost:3000/Customers');
+                const admins = await response.json();
+
+                // Find a matching admin based on email and password
+                const user = admins.find(admin => admin.email === emailInput.value && admin.password === passwordInput.value);
+
+                if (!user) {
+                    if (!admins.find(admin => admin.email === emailInput.value)) {
+                        emailError.textContent = "Email not found.";
+                    } else {
+                        passwordError.textContent = "Incorrect password.";
+                    }
                 } else {
                     // If Remember Me is checked, store the email
                     if (rememberMe.checked) {
-                        localStorage.setItem('rememberedEmail', storedUserData.email);
+                        localStorage.setItem('rememberedEmail', user.email);
                     }
                     alert("Login successful!");
-                    window.location.href = 'user_home.html';
+                    window.location.href = 'userhome.html';
                 }
             });
 
             // Check for remembered email and auto-login
             const rememberedEmail = localStorage.getItem('rememberedEmail');
             if (rememberedEmail) {
-                const storedUserData = JSON.parse(localStorage.getItem('userData'));
-                if (storedUserData && rememberedEmail === storedUserData.email) {
-                    alert("Auto-login successful!");
-                    window.location.href = 'user_home.html';
-                }
+                emailInput.value = rememberedEmail; // Pre-fill the email input
             }
         });
     </script>
 </body>
 
 </html>
-
