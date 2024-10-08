@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,8 +8,11 @@
     <link rel="icon" href="..\Sourse\logo 1.png" type="image/png">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="memberstyles.css">
-    
+    <style>
+
+    </style>
 </head>
+
 <body>
     <div class="container">
         <header>
@@ -18,18 +22,22 @@
             <nav>
                 <ul>
                     <li><a href="home.html">Home</a></li>
-                    <li><a href="memberlogin.html">SignIn/SignUp</a></li>
+                    <li><a href="login.html">SignIn/SignUp</a></li>
                 </ul>
             </nav>
         </header>
+        <br>
+        <br>
 
         <div class="dashboard">
             <h1>Welcome to Unicorn Entertainment</h1>
             <h3>Bringing Fantasy to Your Screen!</h3>
-            <div id="movies-container"></div>
+            <div id="movies-container" class="movies-container">
+
+
+            </div>
 
         </div>
-
         <footer>
             <div class="footer-content">
                 <p>About Us Contact Terms of Service Privacy Policy</p>
@@ -73,17 +81,17 @@
         function displayMovies(movies) {
             const container = document.getElementById('movies-container');
             container.innerHTML = ''; // Clear the container
-            
-         
+
+
             movies.forEach(movie => {
                 const movieCard = `
-                    <div>
+                    <div class="movie-card">
                         <h2>${movie.title}</h2>
                         <img src="${movie.imageUrl}" alt="${movie.title}" />
                         <p><strong>Titel:</strong>${movie.title}</p>
                         <p><strong>Number of Copies:</strong> ${movie.no_of_copies}</p>
-                        <p><strong>Category ID:</strong> ${movie.categoryId}</p>
-               <a href="movie.html?movieId=${movie.id}" class="rent-btn">Rent</a>
+                        <p><strong>Category ID:</strong> ${movie.categoryId}</p><br>
+                        <a style="text-decoration:none" href="movie.html?movieId=${movie.id}" class="rent-btn">Rent</a>
 
                     </div>
                     <hr/>
@@ -92,7 +100,7 @@
             });
             const rentButtons = document.querySelectorAll('.rent-btn');
             rentButtons.forEach(button => {
-                button.addEventListener('click', function() {
+                button.addEventListener('click', function () {
                     const movieId = this.getAttribute('data-id');
                     window.location.href = `movie.html?movieId=${movieId}`;
                 });
@@ -103,4 +111,5 @@
         fetchMovies();
     </script>
 </body>
+
 </html>
