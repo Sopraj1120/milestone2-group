@@ -55,9 +55,9 @@
     <script>
         function generateAdminID() {
             return 'ADM-' + Math.random().toString(36).substr(2, 9).toUpperCase();
-        }
+         }
 
-        async function hashPassword(password) {
+         async function hashPassword(password) {
             const encoder = new TextEncoder();
             const data = encoder.encode(password);
             const hashBuffer = await crypto.subtle.digest('SHA-256', data);
@@ -67,53 +67,60 @@
         }
 
         document.getElementById('signup-form').addEventListener('submit', async function (event) {
-            event.preventDefault();
+    event.preventDefault();
 
-            document.querySelectorAll('.error-message').forEach(el => el.textContent = '');
+    document.querySelectorAll('.error-message').forEach(el => el.textContent = '');
 
-            var email = document.getElementById('owner-id').value;
-            var password = document.getElementById('password').value;
-            var confirmPassword = document.getElementById('confirm-password').value;
+    var email = document.getElementById('owner-id').value;
+    var password = document.getElementById('password').value;
+    var confirmPassword = document.getElementById('confirm-password').value;
 
-            var valid = true;
+    var valid = true;
 
-            var emailPattern = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/;
-            if (!emailPattern.test(email)) {
-                document.getElementById('email-error').textContent = 'Please enter a valid email address.';
-                valid = false;
+    var emailPattern = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/;
+    if (!emailPattern.test(email)) {
+        document.getElementById('email-error').textContent = 'Please enter a valid email address.';
+        valid = false;
+    }
+
+    if (password !== confirmPassword) {
+        document.getElementById('confirm-password-error').textContent = 'Passwords do not match.';
+        valid = false;
+    }
+
+    if (valid) {
+        var adminId = generateAdminID();
+        var hashedPassword = await hashPassword(password);
+
+        // Save the email and admin ID to localStorage temporarily for login validation
+        localStorage.setItem('adminEmail', email);
+
+        // Data to be sent to the server
+        var data = { adminId: adminId, email: email, password: hashedPassword };
+
+        // Fetch API to send data to db.json
+        fetch("http://localhost:3000/admin", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(data)
+        })
+        .then(response => {
+            if (response.ok) {
+                alert("Registration successful! Your Admin ID is: " + adminId);
+                window.location.href = 'login.html'; // Redirect after successful registration
+            } else {
+                alert("Registration failed.");
             }
-
-            if (password !== confirmPassword) {
-                document.getElementById('confirm-password-error').textContent = 'Passwords do not match.';
-                valid = false;
-            }
-
-            if (valid) {
-                var adminId = generateAdminID();
-                var hashedPassword = await hashPassword(password);
-
-                // Save to localStorage
-                localStorage.setItem('adminId', adminId);
-                localStorage.setItem('passwordHash', hashedPassword);
-                alert("Your Admin ID is: " + adminId);
-
-                // If you have an API endpoint
-                var data = { adminId: adminId, email: email, password: hashedPassword };
-                fetch("http://localhost:3000/admin", {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json"
-                    },
-                    body: JSON.stringify(data)
-                }).then(response => {
-                    if (response.ok) {
-                        window.location.href = 'login.html'; // Redirect after successful registration
-                    } else {
-                        alert("Registration failed.");
-                    }
-                });
-            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert("An error occurred. Please try again.");
         });
+    }
+});
+
     </script>
 </body>
 
