@@ -71,10 +71,17 @@
             </div>
             <div class="register_login">
                 <p class="acc">Already have an account?</p>
-                <p class="register"><a href="login.html" style="color: #ffffff;">Login</a></p>
+                <p class="register"><a href="UserLogin.html" style="color: #ffffff;">Login</a></p>
             </div>
         </footer>
     </div>
+   <!-- Dialog Overlay and Box -->
+<div id="dialog-overlay" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background-color:rgba(0,0,0,0.5);"></div>
+<div id="dialog-box" style="display:none; position:fixed; top:50%; left:50%; transform:translate(-50%, -50%); background-color:blue; color:white; padding:20px; border-radius:10px;">
+    <h3>Registration Successful!</h3>
+    <button id="ok-btn" style="background-color:white; color:blue; padding:5px 10px; border:none; cursor:pointer;">OK</button>
+</div>
+
 
     <script>
         document.addEventListener("DOMContentLoaded", function () {
@@ -89,6 +96,11 @@
             const nicNoInput = document.getElementById('nic_no');
             const userName = document.getElementById('user_name');
 
+
+            const dialogBox = document.getElementById('dialog-box');
+            const dialogOverlay = document.getElementById('dialog-overlay');
+            const okBtn = document.getElementById('ok-btn');
+
             signupForm.addEventListener('submit', function (event) {
                 event.preventDefault(); // Prevent the default form submission
 
@@ -99,7 +111,7 @@
                 const emailPattern = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/;
                 if (!emailPattern.test(emailInput.value)) {
                     emailError.textContent = "Please enter a valid email address.";
-                    formIsValid = false;
+                    formIsValid = true;
                 } else {
                     emailError.textContent = "";
                 }
@@ -124,7 +136,8 @@
                         password: passwordInput.value,
                         mobileNo: mobileNoInput.value,
                         nicNo: nicNoInput.value,
-                        userName: userName.value
+                        userName: userName.value,
+                        status: "Inactive"
                     };
 
                     fetch("http://localhost:3000/Customers", {
@@ -141,13 +154,23 @@
                         return response.json();
                     })
                     .then(result => {
-                        alert("Your registration was successful!");
-                        window.location.href = 'login.html';
+                       // Show dialog box
+                       dialogOverlay.style.display = 'block';
+                        dialogBox.style.display = 'block';
                     })
                     .catch(error => {
                         console.error('Error:', error);
                     });
                 }
+            });
+
+             // Handle the "OK" button click event
+             okBtn.addEventListener('click', function () {
+                dialogBox.style.display = 'none';
+                dialogOverlay.style.display = 'none';
+               // Redirect to login page
+              window.location.href = 'UserLogin.html';
+               
             });
         });
     </script>
