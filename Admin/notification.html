@@ -97,6 +97,12 @@
             async function displayRentalRequests() {
                 const rentalRequests = await fetchRentalRequests();
 
+                // Sort rental requests: pending first, then approved, then rejected/returned
+                rentalRequests.sort((a, b) => {
+                    if (a.status === 'Approved' || a.status === 'Rejected' || a.status === 'Returned') return 1;
+                    return -1;  // Pending requests go first
+                });
+
                 let pendingCount = 0;
                 tableBody.innerHTML = rentalRequests.map(request => {
                     const isApproved = request.status === 'Approved';
@@ -107,10 +113,10 @@
 
                     return `
                         <tr>
-                            <td>${request.customerName || 'N/A'}</td> <!-- Corrected to customerName -->
+                            <td>${request.customerName || 'N/A'}</td>
                             <td><img src="${request.movieImage}" alt="${request.movieTitle}" width="80"></td>
                             <td>${request.movieTitle}</td>
-                            <td>${request.availableCopies || '0'}</td> <!-- Handle undefined -->
+                            <td>${request.availableCopies || '0'}</td>
                             <td>${request.status}</td>
                             <td>${request.rentDate ? new Date(request.rentDate).toLocaleDateString() : '-'}</td>
                             <td>${request.returnDate ? new Date(request.returnDate).toLocaleDateString() : '-'}</td>
