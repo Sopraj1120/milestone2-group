@@ -94,7 +94,7 @@
                     row.innerHTML = `
                         <td><img src="${rental.movieImage}" alt="${rental.movieTitle}" style="width: 50px; height: auto;"></td>
                         <td>${rental.movieTitle}</td>
-                        <td>${rental.userName}</td>
+                        <td>${rental.customerName}</td>
                         <td>${new Date(rental.rentDate).toLocaleDateString()}</td>
                         <td>${new Date(rental.returnDate).toLocaleDateString()}</td>
                         <td>${rental.isOverdue ? '<span style="color: red;">Overdue</span>' : 'On Time'}</td>

@@ -31,6 +31,7 @@
         <table id="rental-requests">
             <thead>
                 <tr>
+                    <th>User Name</th>
                     <th>Movie Image</th>
                     <th>Movie Title</th>
                     <th>Available Copies</th>
@@ -67,18 +68,19 @@
             const tableBody = document.querySelector('#rental-requests tbody');
             const rentalCountElement = document.getElementById('rental-count');
 
-            // Fetch rental requests from the server
             async function fetchRentalRequests() {
                 try {
                     const response = await fetch('http://localhost:3000/rentalRequests');
-                    return await response.json();
+                    if (!response.ok) throw new Error('Network response was not ok');
+                    const rentalRequests = await response.json();
+                    console.log('Fetched rental requests:', rentalRequests);
+                    return rentalRequests;
                 } catch (error) {
                     console.error('Error fetching rental requests:', error);
                     return [];
                 }
             }
 
-            // Update rental request status in the server
             async function updateRequestStatus(requestId, updatedData) {
                 try {
                     await fetch(`http://localhost:3000/rentalRequests/${requestId}`, {
@@ -86,29 +88,29 @@
                         headers: { 'Content-Type': 'application/json' },
                         body: JSON.stringify(updatedData),
                     });
-                    displayRentalRequests(); // Refresh display after update
+                    displayRentalRequests(); 
                 } catch (error) {
                     console.error('Error updating status:', error);
                 }
             }
 
-            // Display rental requests in the table
             async function displayRentalRequests() {
                 const rentalRequests = await fetchRentalRequests();
+
                 let pendingCount = 0;
                 tableBody.innerHTML = rentalRequests.map(request => {
                     const isApproved = request.status === 'Approved';
                     const isRejected = request.status === 'Rejected';
                     const isReturned = request.status === 'Returned';
 
-                    // Count pending requests
                     if (!isApproved && !isRejected) pendingCount++;
 
                     return `
                         <tr>
+                            <td>${request.customerName || 'N/A'}</td> <!-- Corrected to customerName -->
                             <td><img src="${request.movieImage}" alt="${request.movieTitle}" width="80"></td>
                             <td>${request.movieTitle}</td>
-                            <td>${request.availableCopies}</td>
+                            <td>${request.availableCopies || '0'}</td> <!-- Handle undefined -->
                             <td>${request.status}</td>
                             <td>${request.rentDate ? new Date(request.rentDate).toLocaleDateString() : '-'}</td>
                             <td>${request.returnDate ? new Date(request.returnDate).toLocaleDateString() : '-'}</td>
@@ -117,11 +119,9 @@
                     `;
                 }).join('');
 
-                // Update the notification count for rental requests
                 rentalCountElement.textContent = pendingCount;
             }
 
-            // Generate action buttons based on request status
             function generateActionButtons(request, isApproved, isRejected, isReturned) {
                 if (isReturned) {
                     return `<p>Movie Returned</p>`;
@@ -137,38 +137,28 @@
                 }
             }
 
-            // Accept rental request and update the database
             window.acceptRequest = async function(requestId) {
                 const rentDate = new Date();
                 const returnDate = new Date();
-                returnDate.setDate(rentDate.getDate() + 7); // Set return date to 7 days from rent date
+                returnDate.setDate(rentDate.getDate() + 7);
                 await updateRequestStatus(requestId, { status: 'Approved', rentDate, returnDate });
-                updatePendingCount(-1); // Decrease the notification count
             };
 
-            // Reject rental request and update the database
             window.rejectRequest = async function(requestId) {
                 const reason = prompt('Enter rejection reason:');
                 if (reason) {
                     await updateRequestStatus(requestId, { status: 'Rejected', rejectionReason: reason });
-                    updatePendingCount(-1); // Decrease the notification count
                 }
             };
 
-            // Mark the movie as returned in the database
             window.returnMovie = async function(requestId) {
                 await updateRequestStatus(requestId, { status: 'Returned' });
             };
 
-            // Update pending count for notifications
-            function updatePendingCount(change) {
-                const currentCount = parseInt(rentalCountElement.textContent, 10);
-                rentalCountElement.textContent = Math.max(0, currentCount + change); // Ensure count doesn't go below 0
-            }
-
-            displayRentalRequests(); // Initial display of rental requests
+            displayRentalRequests();
         });
     </script>
+    
 </body>
 
 </html>

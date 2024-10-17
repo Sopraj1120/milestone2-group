@@ -29,6 +29,7 @@
                 <li><a href="account.html">My Account</a></li>
             </ul>
         </nav>
+        <div id="welcome-note"></div> <!-- Welcome note placeholder -->
     </header>
 
     <div class="content">
@@ -36,8 +37,7 @@
         <div class="movie-category">
             <label for="category-select">Select a Category:</label>
             <select id="category-select">
-                <!-- Categories populated dynamically -->
-                 <option>Select Category</option>
+                <option>Select Category</option>
             </select>
         </div>
 
@@ -67,6 +67,41 @@
             const moviesList = document.getElementById('movies-list');
             const categorySelect = document.getElementById('category-select');
             const searchInput = document.querySelector('.search-container input');
+            const welcomeNote = document.getElementById('welcome-note');
+
+            // Get logged-in user's ID from session storage
+            const loggedInUser = sessionStorage.getItem('loggedInUser');
+
+            // Check if a user is logged in
+            let userId = null;
+            let customerName = 'Guest'; // Default name
+
+            if (loggedInUser) {
+                const user = JSON.parse(loggedInUser);
+                userId = user.id;
+
+                // Fetch customer data from the endpoint
+                fetch('http://localhost:3000/Customers')
+                    .then(response => response.json())
+                    .then(customers => {
+                        // Find the customer with the matching ID
+                        const customer = customers.find(c => c.id === userId);
+
+                        if (customer) {
+                            // Display the first name of the logged-in customer in the welcome note
+                            customerName = customer.firstName; // Save customer name
+                            welcomeNote.textContent = `Welcome, ${customerName}!`;
+                        } else {
+                            welcomeNote.textContent = 'Welcome, Guest!';
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error fetching customers:', error);
+                        welcomeNote.textContent = 'Welcome, Guest!';
+                    });
+            } else {
+                welcomeNote.textContent = 'Welcome, Guest!';
+            }
 
             async function fetchCategories() {
                 try {
@@ -110,14 +145,14 @@
                         const movieItem = document.createElement('div');
                         movieItem.className = 'movie-item';
                         movieItem.innerHTML = `
-                            <img src="${movie.imageUrl}" alt="${movie.title}">
-                            <div class="movie-details">
-                                <h3>${movie.title}</h3>
-                                <p>${movie.description}</p>
-                                <p><strong>Copies Available:</strong> ${movie.no_of_copies}</p>
-                                <button class="rent-btn" onclick="rentMovie('${movie.id}', '${movie.title}', '${movie.imageUrl}', '${movie.no_of_copies}')">Rent Now</button>
-                            </div>
-                        `;
+                    <img src="${movie.imageUrl}" alt="${movie.title}">
+                    <div class="movie-details">
+                        <h3>${movie.title}</h3>
+                        <p>${movie.description}</p>
+                        <p><strong>Copies Available:</strong> ${movie.no_of_copies}</p>
+                        <button class="rent-btn" onclick="rentMovie('${movie.id}', '${movie.title}', '${movie.imageUrl}', '${movie.no_of_copies}', '${userId}', '${customerName}')">Rent Now</button>
+                    </div>
+                `;
                         moviesList.appendChild(movieItem);
                     });
                 } else {
@@ -135,19 +170,14 @@
 
             initializeCategories();
 
-            window.rentMovie = async function (movieId, movieTitle, movieImage, availableCopies) {
-                const customerId = 'YOUR_CUSTOMER_ID'; // Replace with actual customer ID logic
-                const customerName = 'YOUR_CUSTOMER_NAME'; // Replace with actual customer name logic
-                const categoryId = categorySelect.value; // Get the selected category ID
-
+            window.rentMovie = async function (movieId, movieTitle, movieImage, availableCopies, customerId, customerName) {
                 const rentalRequest = {
                     movieId,
                     movieTitle,
                     movieImage,
                     availableCopies,
                     customerId,
-                    customerName,
-                    categoryId,
+                    customerName,  // Send customer name
                     status: 'Pending',
                     rentDate: new Date().toISOString()
                 };
@@ -176,5 +206,3 @@
 </body>
 
 </html>
-
-

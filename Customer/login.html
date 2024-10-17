@@ -68,31 +68,50 @@
 
             signinForm.addEventListener('submit', async function (event) {
                 event.preventDefault(); // Prevent default form submission
-
+                
                 // Clear previous error messages
                 emailError.textContent = '';
                 passwordError.textContent = '';
 
-                // Fetch admin users from the JSON server
-                const response = await fetch('http://localhost:3000/Customers');
-                const admins = await response.json();
+                try {
+                    // Fetch admin users from the JSON server
+                    const response = await fetch('http://localhost:3000/Customers');
+                    
+                    // If there is an issue with the response, throw an error
+                    if (!response.ok) {
+                        throw new Error(`Network response was not ok: ${response.statusText}`);
+                    }
+                    
+                    const admins = await response.json();
+                    
+                    // Find a matching admin based on email and password
+                    const user = admins.find(admin => admin.email === emailInput.value && admin.password === passwordInput.value);
 
-                // Find a matching admin based on email and password
-                const user = admins.find(admin => admin.email === emailInput.value && admin.password === passwordInput.value);
-
-                if (!user) {
-                    if (!admins.find(admin => admin.email === emailInput.value)) {
-                        emailError.textContent = "Email not found.";
+                    if (!user) {
+                        if (!admins.find(admin => admin.email === emailInput.value)) {
+                            emailError.textContent = "Email not found.";
+                        } else {
+                            passwordError.textContent = "Incorrect password.";
+                        }
                     } else {
-                        passwordError.textContent = "Incorrect password.";
+                        // Save the user details in session storage
+                        sessionStorage.setItem('loggedInUser', JSON.stringify({
+                            email: user.email,
+                            name: user.name, // Assuming the user object has a name property
+                            id: user.id // Assuming the user object has an id property
+                        }));
+
+                        // If Remember Me is checked, store the email in local storage
+                        if (rememberMe.checked) {
+                            localStorage.setItem('rememberedEmail', user.email);
+                        }
+
+                        alert("Login successful!");
+                        window.location.href = 'userhome.html';
                     }
-                } else {
-                    // If Remember Me is checked, store the email
-                    if (rememberMe.checked) {
-                        localStorage.setItem('rememberedEmail', user.email);
-                    }
-                    alert("Login successful!");
-                    window.location.href = 'userhome.html';
+                } catch (error) {
+                    console.error('Error fetching users:', error);
+                    alert('An error occurred during login. Please try again later.');
                 }
             });
 
