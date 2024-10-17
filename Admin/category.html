@@ -25,6 +25,7 @@
             </ul>
         </nav>
     </header>
+
     <div class="dashboard">
         <h1>Category Management</h1>
         <button id="add-movie-btn">Add Movie</button>
@@ -105,9 +106,38 @@
             </div>
         </div>
 
+        <!-- Modal for editing a movie -->
+        <div id="edit-movie-modal" class="modal" style="display: none;">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <h2>Edit Movie</h2>
+                <form id="edit-movie-form">
+                    <input type="hidden" id="edit-movie-id">
+                    <label for="edit-movie-title">Title:</label>
+                    <input type="text" id="edit-movie-title" name="edit-movie-title" required>
+                    <label for="edit-movie-description">Description:</label>
+                    <input type="text" id="edit-movie-description" name="edit-movie-description" required>
+                    <label for="edit-no-of-copies">Number of Copies:</label>
+                    <input type="number" id="edit-no-of-copies" name="edit-no-of-copies" required>
+                    <label for="edit-movie-category">Category:</label>
+                    <select id="edit-movie-category" name="edit-movie-category" required>
+                        <option value="1">Action</option>
+                        <option value="2">Comedy</option>
+                        <option value="3">Series</option>
+                        <option value="4">Horror</option>
+                        <option value="5">Kids</option>
+                        <option value="6">Sci-Fi</option>
+                    </select>
+                    <label for="edit-movie-image-url">Image URL:</label>
+                    <input type="url" id="edit-movie-image-url" name="edit-movie-image-url" required>
+                    <button type="submit">Update Movie</button>
+                </form>
+            </div>
+        </div>
+
         <!-- Sections for each category to show movies -->
         <div id="category-movies">
-            <div id="movies-1" class="movies-section">
+            <div id="movies-1" class="movies-section" style="display:none;">
                 <h2>Action Movies</h2>
                 <table>
                     <thead>
@@ -124,7 +154,7 @@
                     </tbody>
                 </table>
             </div>
-            <div id="movies-2" class="movies-section">
+            <div id="movies-2" class="movies-section" style="display:none;">
                 <h2>Comedy Movies</h2>
                 <table>
                     <thead>
@@ -141,7 +171,7 @@
                     </tbody>
                 </table>
             </div>
-            <div id="movies-3" class="movies-section">
+            <div id="movies-3" class="movies-section" style="display:none;">
                 <h2>Series</h2>
                 <table>
                     <thead>
@@ -158,7 +188,7 @@
                     </tbody>
                 </table>
             </div>
-            <div id="movies-4" class="movies-section">
+            <div id="movies-4" class="movies-section" style="display:none;">
                 <h2>Horror Movies</h2>
                 <table>
                     <thead>
@@ -175,7 +205,7 @@
                     </tbody>
                 </table>
             </div>
-            <div id="movies-5" class="movies-section">
+            <div id="movies-5" class="movies-section" style="display:none;">
                 <h2>Kids Movies</h2>
                 <table>
                     <thead>
@@ -192,8 +222,8 @@
                     </tbody>
                 </table>
             </div>
-            <div id="movies-6" class="movies-section">
-                <h2>Sci-Fi</h2>
+            <div id="movies-6" class="movies-section" style="display:none;">
+                <h2>Sci-Fi Movies</h2>
                 <table>
                     <thead>
                         <tr>
@@ -205,216 +235,201 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <!-- Events movies will be displayed here -->
+                        <!-- Sci-Fi movies will be displayed here -->
                     </tbody>
                 </table>
             </div>
         </div>
     </div>
+
     <footer>
-        <div class="footer-content">
-            <p>About Us Contact Terms of Service Privacy Policy</p>
-            <div class="social-media">
-                <a href="#"><img src="..\Sourse\Facebook.png" alt="Facebook" class="Socialmedia"></a>
-                <a href="#"><img src="..\Sourse\Instagram.png" alt="Instagram" class="Socialmedia"></a>
-                <a href="#"><img src="..\Sourse\LinkedIn.png" alt="LinkedIn" class="Socialmedia"></a>
-                <a href="#"><img src="..\Sourse\Pinterest.png" alt="Pinterest" class="Socialmedia"></a>
-                <a href="#"><img src="..\Sourse\Twitter.png" alt="Twitter" class="Socialmedia"></a>
-            </div>
-            <div class="copyright">
-                &copy; 2024 Unicorn Entertainment
+        <div class="footer-container">
+            <div class="footer-section">
+                <p>Unicorn Entertainment © 2023</p>
             </div>
         </div>
     </footer>
+
     <script>
-    document.addEventListener("DOMContentLoaded", function () {
-    const addMovieBtn = document.getElementById("add-movie-btn");
-    const modal = document.getElementById("add-movie-modal");
-    const closeBtn = document.querySelector(".close");
-    const addMovieForm = document.getElementById("add-movie-form");
-    const categoryTableBody = document.getElementById("category-table-body");
+        document.addEventListener("DOMContentLoaded", function () {
+            const addMovieForm = document.getElementById("add-movie-form");
+            const editMovieForm = document.getElementById("edit-movie-form");
+            const addMovieModal = document.getElementById("add-movie-modal");
+            const editMovieModal = document.getElementById("edit-movie-modal");
+            const addMovieBtn = document.getElementById("add-movie-btn");
+            const closeAddModalBtn = addMovieModal.querySelector(".close");
+            const closeEditModalBtn = editMovieModal.querySelector(".close");
 
-    // Add movie modal handling
-    addMovieBtn.addEventListener("click", () => {
-        modal.style.display = "block";
-    });
-
-    closeBtn.addEventListener("click", () => {
-        modal.style.display = "none";
-    });
-
-    window.addEventListener("click", (event) => {
-        if (event.target === modal) {
-            modal.style.display = "none";
-        }
-    });
-
-    // Function to update movie count
-    const categoriesUrl = 'http://localhost:3000/categories';
-const moviesUrl = 'http://localhost:3000/movies';
-
-// Fetch categories and movies, and get the count of movies per category
-async function fetchCategoriesWithMovieCount() {
-    try {
-        // Fetch categories and movies
-        const [categoriesResponse, moviesResponse] = await Promise.all([
-            fetch(categoriesUrl),
-            fetch(moviesUrl)
-        ]);
-
-        const categories = await categoriesResponse.json();
-        const movies = await moviesResponse.json();
-
-        // Embed movie count within their respective categories
-        const categoriesWithMovieCount = categories.map(category => {
-            category.movieCount = movies.filter(movie => movie.categoryId === category.id).length;
-            return category;
-        });
-
-        displayCategoriesWithMovieCount(categoriesWithMovieCount);
-    } catch (error) {
-        console.error('Error fetching data:', error);
-    }
-}
-
-// Function to display categories with their movie count
-function displayCategoriesWithMovieCount(categories) {
-    const container = document.getElementById('categoryContainer');
-    container.innerHTML = ''; // Clear existing content
-
-    categories.forEach(category => {
-        const categorySection = document.createElement('div');
-        categorySection.className = 'category-section';
-
-        // Create category title with movie count
-        const categoryTitle = document.createElement('h3');
-        categoryTitle.textContent = `${category.name} (${category.movieCount} movies)`;
-        categorySection.appendChild(categoryTitle);
-
-        // Append the category section to the container
-        container.appendChild(categorySection);
-    });
-}
-
-// Call the function to fetch and display categories with movie count
-fetchCategoriesWithMovieCount();
-
-
-    // Add movie
-    addMovieForm.addEventListener("submit", function (e) {
-        e.preventDefault();
-        const movieTitle = document.getElementById("movie-title").value;
-        const movieDescription = document.getElementById("movie-description").value;
-        const noOfCopies = document.getElementById("no_of_copies").value;
-        const movieCategory = document.getElementById("movie-category").value;
-        const movieImageUrl = document.getElementById("movie-image-url").value;
-
-        const newMovie = {
-            title: movieTitle,
-            description: movieDescription,
-            copies: noOfCopies,
-            categoryId: parseInt(movieCategory),
-            imageUrl: movieImageUrl,
-        };
-
-        fetch("http://localhost:3000/movies", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(newMovie)
-        })
-            .then(response => response.json())
-            .then(data => {
-                modal.style.display = "none"; // Close modal after adding the movie
-                updateMovieCount(movieCategory); // Update the movie count for the category
-            })
-            .catch(error => console.error("Error adding movie:", error));
-    });
-
-    // View movies by category
-    const viewButtons = document.querySelectorAll(".view-btn");
-    viewButtons.forEach(button => {
-        button.addEventListener("click", (event) => {
-            const categoryId = event.target.getAttribute("data-category-id");
-            const movieSection = document.getElementById(`movies-${categoryId}`);
-
-            // Show the selected category's movie section and hide others
-            document.querySelectorAll(".movies-section").forEach(section => {
-                section.style.display = "none";
-            });
-            movieSection.style.display = "block";
-
-            // Fetch and display the movies for the selected category
-            fetchMoviesByCategory(categoryId);
-        });
-    });
-
-    // Function to fetch and display movies by category
-    function fetchMoviesByCategory(categoryId) {
-        getCategoryMovies(categoryId)
-            .then(movies => {
-                const tbody = document.querySelector(`#movies-${categoryId} tbody`);
-                tbody.innerHTML = "";
-
-                movies.forEach(movie => {
-                    const row = document.createElement("tr");
-                    row.innerHTML = `
-                        <td>${movie.title}</td>
-                        <td>${movie.description}</td>
-                        <td>${movie.copies}</td>
-                        <td><img src="${movie.imageUrl}" alt="${movie.title}" width="50"></td>
-                        <td><button class="delete-btn" data-movie-id="${movie.id}">Delete</button></td>
-                    `;
-                    tbody.appendChild(row);
-                });
-
-                // Add event listeners to delete buttons
-                const deleteButtons = tbody.querySelectorAll(".delete-btn");
-                deleteButtons.forEach(button => {
-                    button.addEventListener("click", (event) => {
-                        const movieId = event.target.getAttribute("data-movie-id");
-                        deleteMovie(movieId, categoryId);
-                    });
-                });
-            })
-            .catch(error => {
-                console.error("There was a problem with the fetch operation:", error);
-            });
-    }
-
-    // Function to delete a movie
-    function deleteMovie(movieId, categoryId) {
-        fetch(`http://localhost:3000/movies/${movieId}`, {
-            method: "DELETE"
-        })
-        .then(response => {
-            if (!response.ok) {
-                throw new Error("Network response was not ok");
+            // Function to update movie count for a category
+            function updateMovieCount(categoryId) {
+                fetch(`http://localhost:3000/movies?categoryId=${categoryId}`)
+                    .then(response => response.json())
+                    .then(movies => {
+                        const countElement = document.querySelector(`tr[data-category-id="${categoryId}"] .movie-count`);
+                        countElement.textContent = movies.length;
+                    })
+                    .catch(error => console.error("Error fetching movie count:", error));
             }
-            // Remove the movie from the table
-            fetchMoviesByCategory(categoryId); // Refresh the movie list
-            updateMovieCount(categoryId); // Update the movie count
-        })
-        .catch(error => {
-            console.error("There was a problem with the delete operation:", error);
-        });
-    }
 
-    // Function to get all movies for a category
-    function getCategoryMovies(categoryId) {
-        return fetch(`http://localhost:3000/movies?categoryId=${categoryId}`)
-            .then(response => response.json())
-            .catch(error => {
-                console.error("Error fetching category movies:", error);
-                return [];
+            // Open add movie modal
+            addMovieBtn.addEventListener("click", function () {
+                addMovieModal.style.display = "block";
             });
-    }
-});
 
+            // Close add movie modal
+            closeAddModalBtn.addEventListener("click", function () {
+                addMovieModal.style.display = "none";
+            });
+
+            // Add movie
+            addMovieForm.addEventListener("submit", function (e) {
+                e.preventDefault();
+
+                const newMovie = {
+                    title: document.getElementById("movie-title").value,
+                    description: document.getElementById("movie-description").value,
+                    copies: document.getElementById("no_of_copies").value,
+                    categoryId: document.getElementById("movie-category").value,
+                    imageUrl: document.getElementById("movie-image-url").value,
+                };
+
+                fetch("http://localhost:3000/movies", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify(newMovie),
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                        addMovieModal.style.display = "none";
+                        updateMovieCount(newMovie.categoryId);
+                        addMovieForm.reset();
+                    })
+                    .catch(error => console.error("Error adding movie:", error));
+            });
+
+            // Open edit movie modal and populate with movie data
+            function openEditModal(movie) {
+                document.getElementById("edit-movie-id").value = movie.id;
+                document.getElementById("edit-movie-title").value = movie.title;
+                document.getElementById("edit-movie-description").value = movie.description;
+                document.getElementById("edit-no-of-copies").value = movie.copies;
+                document.getElementById("edit-movie-category").value = movie.categoryId;
+                document.getElementById("edit-movie-image-url").value = movie.imageUrl;
+                editMovieModal.style.display = "block";
+            }
+
+            // Close edit movie modal
+            closeEditModalBtn.addEventListener("click", function () {
+                editMovieModal.style.display = "none";
+            });
+
+            // Update movie
+            editMovieForm.addEventListener("submit", function (e) {
+                e.preventDefault();
+
+                const movieId = document.getElementById("edit-movie-id").value;
+                const updatedMovie = {
+                    title: document.getElementById("edit-movie-title").value,
+                    description: document.getElementById("edit-movie-description").value,
+                    copies: document.getElementById("edit-no-of-copies").value,
+                    categoryId: document.getElementById("edit-movie-category").value,
+                    imageUrl: document.getElementById("edit-movie-image-url").value,
+                };
+
+                fetch(`http://localhost:3000/movies/${movieId}`, {
+                    method: "PUT",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify(updatedMovie),
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                        editMovieModal.style.display = "none";
+                        updateMovieCount(updatedMovie.categoryId);
+                    })
+                    .catch(error => console.error("Error updating movie:", error));
+            });
+
+            // View movies for each category
+            document.querySelectorAll(".view-btn").forEach(button => {
+                button.addEventListener("click", function () {
+                    const categoryId = this.dataset.categoryId;
+                    const moviesSection = document.getElementById(`movies-${categoryId}`);
+                    const moviesTableBody = moviesSection.querySelector("tbody");
+
+                    // Clear previous movies
+                    moviesTableBody.innerHTML = "";
+
+                    fetch(`http://localhost:3000/movies?categoryId=${categoryId}`)
+                        .then(response => response.json())
+                        .then(movies => {
+                            movies.forEach(movie => {
+                                const row = document.createElement("tr");
+                                row.innerHTML = `
+                                    <td>${movie.title}</td>
+                                    <td>${movie.description}</td>
+                                    <td>${movie.copies ? movie.copies : 'N/A'}</td>
+                                    <td><img src="${movie.imageUrl}" alt="${movie.title}" class="movie-image"></td>
+                                    <td>
+                                        <button class="edit-btn" data-movie-id="${movie.id}">Edit</button>
+                                        <button class="delete-btn" data-movie-id="${movie.id}">Delete</button>
+                                    </td>
+                                `;
+                                moviesTableBody.appendChild(row);
+                            });
+
+                            // Show only the clicked section and hide others
+                            document.querySelectorAll(".movies-section").forEach(section => {
+                                section.style.display = "none";
+                            });
+                            moviesSection.style.display = "block";
+
+                            // Add event listener for delete buttons
+                            moviesSection.querySelectorAll(".delete-btn").forEach(deleteButton => {
+                                deleteButton.addEventListener("click", function () {
+                                    const movieId = this.dataset.movieId;
+                                    fetch(`http://localhost:3000/movies/${movieId}`, {
+                                        method: "DELETE",
+                                    })
+                                        .then(response => {
+                                            if (response.ok) {
+                                                updateMovieCount(categoryId);  // Update movie count after deleting a movie
+                                                this.closest("tr").remove();  // Remove movie row from the table
+                                            } else {
+                                                console.error("Failed to delete movie");
+                                            }
+                                        })
+                                        .catch(error => console.error("Error deleting movie:", error));
+                                });
+                            });
+
+                            // Add event listener for edit buttons
+                            moviesSection.querySelectorAll(".edit-btn").forEach(editButton => {
+                                editButton.addEventListener("click", function () {
+                                    const movieId = this.dataset.movieId;
+                                    fetch(`http://localhost:3000/movies/${movieId}`)
+                                        .then(response => response.json())
+                                        .then(movie => {
+                                            openEditModal(movie);
+                                        })
+                                        .catch(error => console.error("Error fetching movie data:", error));
+                                });
+                            });
+                        })
+                        .catch(error => console.error("Error fetching movies:", error));
+                });
+            });
+
+            // Update movie count for all categories on page load
+            document.querySelectorAll("tr[data-category-id]").forEach(row => {
+                const categoryId = row.dataset.categoryId;
+                updateMovieCount(categoryId);
+            });
+        });
     </script>
-
-
 </body>
 
 </html>
