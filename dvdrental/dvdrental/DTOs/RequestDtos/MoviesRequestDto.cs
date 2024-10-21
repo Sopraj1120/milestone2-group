@@ -2,6 +2,6 @@
 {
     public class MoviesRequestDto : MovieDto
     {
-
+        public IFormFile File { get; set; }
     }
 }

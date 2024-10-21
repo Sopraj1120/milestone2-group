@@ -54,6 +54,13 @@ internal class DatabaseInitial
                         );
                     END";
 
+            using (var customerCommand = new SqlCommand(customerQuery, connection))
+            {
+                customerCommand.ExecuteNonQuery();
+                Console.WriteLine("Database initialized. Customers table created if it didn't exist.");
+            }
+
+
             string categoryQuery = @"
         IF NOT EXISTS (SELECT * FROM sysobjects WHERE name='Categories' AND xtype='U')
         BEGIN

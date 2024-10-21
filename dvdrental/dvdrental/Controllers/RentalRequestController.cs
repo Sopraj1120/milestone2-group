@@ -1,91 +1,59 @@
 ﻿using dvdrental.DTOs;
-using dvdrental.DTOs.RequestDtos;
 using dvdrental.DTOs.ResponceDtos;
 using dvdrental.IService;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
-using System.Security.Cryptography.Xml;
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
-namespace dvdrental.Controllers
+[ApiController]
+[Route("api/[controller]")]
+public class RentalRequestController : ControllerBase
 {
-    [Route("api/[controller]")]
-    [ApiController]
-    public class RentalRequestController : ControllerBase
+    private readonly IRentalRequestService _rentalRequestService;
+
+    public RentalRequestController(IRentalRequestService rentalRequestService)
     {
-        private readonly IRentalRequestService _rentalRequestService;
-        private readonly IFileService _fileService;
-
-        public RentalRequestController(IRentalRequestService rentalRequestService)
-        {
-            _rentalRequestService = rentalRequestService;
-        }
-
-        [HttpPost]
-        [Route ("AddRentalRequest")]
-        public async Task<IActionResult> AddRentalRequest([FromForm] RentalRequestDto rentalRequestDto)
-        {
-         
-            if (rentalRequestDto == null)
-            {
-                return BadRequest("Rental request data is required.");
-            }
-
-            // Call the service to add the rental request
-            var rentalResponseDto = await _rentalRequestService.AddRentalRequest(rentalRequestDto);
-
-            // Return a Created response with the new rental request details
-            return CreatedAtAction(nameof(AddRentalRequest), new { id = rentalResponseDto.Id }, rentalResponseDto);
-        }
-
-        // PUT: api/rentalrequest/accept/{id}
-        [HttpPut("accept/{id}")]
-        public async Task<IActionResult> AcceptRentalRequest(int id,  bool isAccepted)
-        {
-           
-            var result = await _rentalRequestService.AcceptRentalRequest(id, isAccepted);
-
-            
-            if (result)
-            {
-                return NoContent(); // 204 No Content
-            }
-            return NotFound(); // 404 Not Found
-        }
-        [HttpGet("get-All-RentalRequest")]
-        public async Task<IActionResult> GetAllRentalRequests()
-        {
-            var data= await _rentalRequestService.GetAllRentalRequests();
-            return Ok(data);
-        }
-       
-        [HttpGet("get-all-rentelrequest-bycustomerid")]
-        public async Task<IActionResult> GetRentalsByCustomerId(int customerId)
-        {
-            var data=_rentalRequestService.GetRentalsByCustomerId(customerId);
-            return Ok(data);                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      
-        }
-
-        [HttpGet("get-all-rentelrequest-byId/{id}")]
-        public async Task<IActionResult> GetRentalRequestById(int id)
-        {
-            var data = await _rentalRequestService.GetRentalRequestById(id);
-
-            if (data == null)
-            {
-                return NotFound(new { Message = "Rental request not found" });
-            }
-
-            return Ok(data);
-        }
-
-      
-
-  
-
-
-
-
+        _rentalRequestService = rentalRequestService;
     }
 
+    // POST api/rentalrequest
+    [HttpPost]
+    public async Task<ActionResult<RentalResponceDto>> CreateRentalRequest([FromBody] RentalRequestDto rentalRequestDto)
+    {
+        try
+        {
+            if (rentalRequestDto == null)
+            {
+                return BadRequest("Rental request cannot be null.");
+            }
+
+            // Creating the rental request
+            var rentalRequest = await _rentalRequestService.CreateRentalRequest(rentalRequestDto);
+
+            // Return the response
+            return Ok(rentalRequest);
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(500, $"Internal server error: {ex.Message}");
+        }
+    }
+
+    // GET api/rentalrequest
+    [HttpGet]
+    public async Task<ActionResult<IEnumerable<RentalResponceDto>>> GetAllRentalRequests()
+    {
+        try
+        {
+            var rentalRequests = await _rentalRequestService.GetAllRentalRequests();
+            return Ok(rentalRequests);
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(500, $"Internal server error: {ex.Message}");
+        }
+    }
+
+    
 }

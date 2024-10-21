@@ -17,8 +17,12 @@ namespace dvdrental.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> AddMovie([FromBody] MoviesRequestDto movieRequest)
+        public async Task<IActionResult> AddMovie([FromForm] MoviesRequestDto movieRequest)
         {
+            if (movieRequest.File != null && movieRequest.File.Length > 0)
+            {
+               
+            }
             var movie = await _movieService.AddMovie(movieRequest);
             return CreatedAtAction(nameof(GetMovieById), new { id = movie.Id }, movie);
         }
@@ -40,7 +44,7 @@ namespace dvdrental.Controllers
         }
 
         [HttpPut]
-        public async Task<IActionResult> UpdateMovie([FromBody] MoviesRequestDto movieRequest, int id)
+        public async Task<IActionResult> UpdateMovie([FromForm] MoviesRequestDto movieRequest, int id)
         {
             var result = await _movieService.UpdateMovie(movieRequest, id);
             if (!result) return NotFound();

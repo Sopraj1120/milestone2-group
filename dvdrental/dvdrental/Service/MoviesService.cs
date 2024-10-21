@@ -15,6 +15,29 @@ public class MovieService : IMoviesService
 
     public async Task<MovieResponseDto> AddMovie(MoviesRequestDto movieRequest)
     {
+
+         // Validate the uploaded file
+    if (movieRequest.File != null && movieRequest.File.Length > 0)
+    {
+        var uploadsFolder = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "uploads");
+        var fileName = Guid.NewGuid().ToString() + Path.GetExtension(movieRequest.File.FileName);
+        var filePath = Path.Combine(uploadsFolder, fileName);
+
+        // Ensure the upload folder exists
+        if (!Directory.Exists(uploadsFolder))
+        {
+            Directory.CreateDirectory(uploadsFolder);
+        }
+
+        // Save the file
+        using (var stream = new FileStream(filePath, FileMode.Create))
+        {
+            await movieRequest.File.CopyToAsync(stream);
+        }
+
+        // Set the Image path in the movie entity (e.g., a URL or relative path)
+        movieRequest.Image = $"/uploads/{fileName}"; // Adjust according to your needs
+    }
         var movie = new Movies
         {
             Title = movieRequest.Title,

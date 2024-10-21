@@ -21,5 +21,7 @@
         public string Image { get; set; }
 
         public bool IsDeleted { get; set; }
+
+        public IFormFile File { get; set; }
     }
 }

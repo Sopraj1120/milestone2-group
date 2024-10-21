@@ -6,37 +6,33 @@
 
         public int MovieId { get; set; }
 
-
-        public Movies Movie { get; set; }
-
-
-        public int MoviesAvailableCopies { get; set; }
-
-     
         public int CustomerId { get; set; }
 
-      
-        public Customer Customer { get; set; }
+        public string RentDate { get; set; }
+        public string ReturnDate { get; set; }
 
-       
+        public int MovieAvailableCopies { get; set; }
+
+        public string ImagePath { get; set; }
+        public string MovieImageType { get; set; }
+
         public RentalStatus Status { get; set; } = RentalStatus.Pending;
-
-        public DateTime RentDate { get; set; } = DateTime.Now;
-        public DateTime ReturnDate { get; set; }
-
         public IFormFile? imagefile { get; set; }
 
-    
-    //public object MovieImageType { get;  set; }
-    //public object MovieImage { get;  set; }
 
-
-    public enum RentalStatus
+        public enum RentalStatus
         {
             Pending,
             Approved,
             Rejected,
             Returned
         }
+        public Movies Movie { get; set; }
+        public Customer Customer { get; set; }
+
+       
+     
+        
+
     }
 }

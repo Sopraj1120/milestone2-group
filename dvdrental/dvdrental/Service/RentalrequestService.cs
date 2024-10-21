@@ -1,90 +1,74 @@
 ﻿using dvdrental.DTOs;
-using dvdrental.DTOs.RequestDtos;
 using dvdrental.DTOs.ResponceDtos;
 using dvdrental.Entity;
 using dvdrental.IRepository;
 using dvdrental.IService;
-using Microsoft.AspNetCore.Http.HttpResults;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
-namespace dvdrental.Service
+public class RentalRequestService : IRentalRequestService
 {
-    public class RentalrequestService : IRentalRequestService
+    private readonly IRentalRequestRepository _rentalRequestRepository;
+
+    public RentalRequestService(IRentalRequestRepository rentalRequestRepository)
     {
-        private readonly IRentalRequestRepository _rentalRequestsRepository;
-
-     
-
-        public RentalrequestService(IRentalRequestRepository rentalRequestsRepository)
-        {
-            _rentalRequestsRepository = rentalRequestsRepository;
-        }
-                                                     
-        public async Task<bool> AcceptRentalRequest(int id, bool isAccepted)
-        {
-            var data = await _rentalRequestsRepository.AcceptRentalRequest(id, isAccepted);
-                return data;
-        }
-
-        public async Task<RentalResponceDto> AddRentalRequest(RentalRequestDto rentalRequestDto)
-        {
-            var rentalRequest = new RentalRequest
-            {
-                MovieId = rentalRequestDto.MovieId,
-                CustomerId = rentalRequestDto.CustomerId,
-                RentDate = rentalRequestDto.RentDate,
-                ReturnDate = rentalRequestDto.ReturnDate,
-                imagefile = rentalRequestDto.imagefile
-                //MovieImageType = rentalRequestDto.MovieImageType,
-            };
-
-            var addedRentalRequest = await _rentalRequestsRepository.AddRentalRequest(rentalRequest);
-
-            // Map the RentalRequest to RentalResponseDto
-            var rentalResponseDto = new RentalResponceDto
-            {
-                Id = addedRentalRequest.Id, // Ensure RentalRequest has an Id property
-                MovieId = addedRentalRequest.MovieId,
-                CustomerId = addedRentalRequest.CustomerId,
-                RentDate = addedRentalRequest.RentDate,
-                ReturnDate = addedRentalRequest.ReturnDate,
-                imagefile=addedRentalRequest.imagefile
-                //MovieImage = (byte[])addedRentalRequest.MovieImage,
-                //MovieImageType = (string)addedRentalRequest.MovieImageType
-            };
-
-            return rentalResponseDto;
-
-        }
-
-        public async Task<List<RentalResponceDto>> GetAllRentalRequests()
-        {
-            var data=await _rentalRequestsRepository.GetAllRentalRequests();
-            return data;
-        }
-
-
-
-        public async Task<List<RentalResponceDto>> GetRentalRequestById(int id)
-        {
-            var data = await _rentalRequestsRepository.GetRentalRequestById(id);
-            return data;
-
-        }
-
-
-        public async Task<List<RentalResponceDto>> GetRentalsByCustomerId(int customerId)
-        {
-            var data=await _rentalRequestsRepository.GetRentalsByCustomerId(customerId);
-            return data;
-        }
-
-       
-
-        public Task<bool> ReturnRentalRequest(int id)
-        {
-            throw new NotImplementedException();
-        }
-
+        _rentalRequestRepository = rentalRequestRepository;
     }
 
+    public async Task<RentalResponceDto> CreateRentalRequest(RentalRequestDto rentalRequestDto)
+    {
+        // Create the RentalRequest entity from the DTO
+        var rentalRequest = new RentalRequest
+        {
+            MovieId = rentalRequestDto.MovieId,
+            CustomerId = rentalRequestDto.CustomerId,
+            RentDate = DateTime.Now, // Assign the current date as RentDate
+            ReturnDate = string.Now.AddDays(7), // Assign return date to 7 days later
+            Status = RentalRequest.RentalStatus.Pending, // Default status
+            MovieAvailableCopies = 1 // Set this based on your business logic
+        };
+
+        // Call the repository to add the rental request
+        var createdRentalRequest = await _rentalRequestRepository.AddRentalRequest(rentalRequest);
+
+        // Create the response DTO
+        var responseDto = new RentalResponceDto
+        {
+            Id = createdRentalRequest.Id,
+            MovieId = createdRentalRequest.MovieId,
+            CustomerId = createdRentalRequest.CustomerId,
+            RentDate = createdRentalRequest.RentDate,
+            ReturnDate = createdRentalRequest.ReturnDate,
+            Status = createdRentalRequest.Status.ToString(),
+            MovieTitle = "Sample Movie Title", // Replace with actual movie title fetching logic
+            MovieAvailableCopies = createdRentalRequest.MovieAvailableCopies,
+            CustomerName = "Sample Customer Name" // Replace with actual customer name fetching logic
+        };
+
+        return responseDto;
+    }
+
+    public async Task<IEnumerable<RentalResponceDto>> GetAllRentalRequests()
+    {
+        var rentalRequests = await _rentalRequestRepository.GetAllRentalRequests();
+        var responseDtos = new List<RentalResponceDto>();
+
+        foreach (var rentalRequest in rentalRequests)
+        {
+            responseDtos.Add(new RentalResponceDto
+            {
+                Id = rentalRequest.Id,
+                MovieId = rentalRequest.MovieId,
+                CustomerId = rentalRequest.CustomerId,
+                RentDate = rentalRequest.RentDate,
+                ReturnDate = rentalRequest.ReturnDate,
+                Status = rentalRequest.Status.ToString(),
+                MovieTitle = "Sample Movie Title", // Replace with actual movie title fetching logic
+                MovieAvailableCopies = rentalRequest.MovieAvailableCopies,
+                CustomerName = "Sample Customer Name" // Replace with actual customer name fetching logic
+            });
+        }
+
+        return responseDtos;
+    }
 }

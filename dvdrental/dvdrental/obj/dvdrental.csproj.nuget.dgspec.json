@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\manch\\Desktop\\New folder\\backend\\dvdrental\\dvdrental\\dvdrental.csproj": {}
+    "C:\\Users\\UT01141\\Desktop\\milestone2-group\\dvdrental\\dvdrental\\dvdrental.csproj": {}
   },
   "projects": {
-    "C:\\Users\\manch\\Desktop\\New folder\\backend\\dvdrental\\dvdrental\\dvdrental.csproj": {
+    "C:\\Users\\UT01141\\Desktop\\milestone2-group\\dvdrental\\dvdrental\\dvdrental.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\manch\\Desktop\\New folder\\backend\\dvdrental\\dvdrental\\dvdrental.csproj",
+        "projectUniqueName": "C:\\Users\\UT01141\\Desktop\\milestone2-group\\dvdrental\\dvdrental\\dvdrental.csproj",
         "projectName": "dvdrental",
-        "projectPath": "C:\\Users\\manch\\Desktop\\New folder\\backend\\dvdrental\\dvdrental\\dvdrental.csproj",
-        "packagesPath": "C:\\Users\\manch\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\manch\\Desktop\\New folder\\backend\\dvdrental\\dvdrental\\obj\\",
+        "projectPath": "C:\\Users\\UT01141\\Desktop\\milestone2-group\\dvdrental\\dvdrental\\dvdrental.csproj",
+        "packagesPath": "C:\\Users\\UT01141\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\UT01141\\Desktop\\milestone2-group\\dvdrental\\dvdrental\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\manch\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\UT01141\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -74,7 +74,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.400/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.300/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
