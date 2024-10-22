@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "1fJjLdGQIjssemva+lRY2h/fZ57qRjyCEWb62E1wCdE=",
+  "Hash": "FHgl7iPw0Lsbz1LFK8U5nus9qMadz4V/Ej/z3L5a4hI=",
   "Source": "dvdrental",
   "BasePath": "_content/dvdrental",
   "Mode": "Default",
@@ -10,17 +10,36 @@
     {
       "Name": "dvdrental\\wwwroot",
       "Source": "dvdrental",
-      "ContentRoot": "C:\\Users\\UT01141\\Desktop\\milestone2-group\\dvdrental\\dvdrental\\wwwroot\\",
+      "ContentRoot": "D:\\Projects\\21-10-2024_GroupPro\\milestone2-group\\dvdrental\\dvdrental\\wwwroot\\",
       "BasePath": "_content/dvdrental",
       "Pattern": "**"
     }
   ],
   "Assets": [
     {
-      "Identity": "C:\\Users\\UT01141\\Desktop\\milestone2-group\\dvdrental\\dvdrental\\wwwroot\\uploads\\12f0106b-d742-4490-8602-f466321ba15a.png",
+      "Identity": "D:\\Projects\\21-10-2024_GroupPro\\milestone2-group\\dvdrental\\dvdrental\\wwwroot\\uploads\\099319ec-d642-4d6f-ae81-967cee8a19ec.jpeg",
       "SourceId": "dvdrental",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\UT01141\\Desktop\\milestone2-group\\dvdrental\\dvdrental\\wwwroot\\",
+      "ContentRoot": "D:\\Projects\\21-10-2024_GroupPro\\milestone2-group\\dvdrental\\dvdrental\\wwwroot\\",
+      "BasePath": "_content/dvdrental",
+      "RelativePath": "uploads/099319ec-d642-4d6f-ae81-967cee8a19ec.jpeg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\099319ec-d642-4d6f-ae81-967cee8a19ec.jpeg"
+    },
+    {
+      "Identity": "D:\\Projects\\21-10-2024_GroupPro\\milestone2-group\\dvdrental\\dvdrental\\wwwroot\\uploads\\12f0106b-d742-4490-8602-f466321ba15a.png",
+      "SourceId": "dvdrental",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Projects\\21-10-2024_GroupPro\\milestone2-group\\dvdrental\\dvdrental\\wwwroot\\",
       "BasePath": "_content/dvdrental",
       "RelativePath": "uploads/12f0106b-d742-4490-8602-f466321ba15a.png",
       "AssetKind": "All",
@@ -36,10 +55,10 @@
       "OriginalItemSpec": "wwwroot\\uploads\\12f0106b-d742-4490-8602-f466321ba15a.png"
     },
     {
-      "Identity": "C:\\Users\\UT01141\\Desktop\\milestone2-group\\dvdrental\\dvdrental\\wwwroot\\uploads\\5a56531d-ae28-491e-b3ca-93bd46128000.png",
+      "Identity": "D:\\Projects\\21-10-2024_GroupPro\\milestone2-group\\dvdrental\\dvdrental\\wwwroot\\uploads\\5a56531d-ae28-491e-b3ca-93bd46128000.png",
       "SourceId": "dvdrental",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\UT01141\\Desktop\\milestone2-group\\dvdrental\\dvdrental\\wwwroot\\",
+      "ContentRoot": "D:\\Projects\\21-10-2024_GroupPro\\milestone2-group\\dvdrental\\dvdrental\\wwwroot\\",
       "BasePath": "_content/dvdrental",
       "RelativePath": "uploads/5a56531d-ae28-491e-b3ca-93bd46128000.png",
       "AssetKind": "All",
@@ -55,10 +74,29 @@
       "OriginalItemSpec": "wwwroot\\uploads\\5a56531d-ae28-491e-b3ca-93bd46128000.png"
     },
     {
-      "Identity": "C:\\Users\\UT01141\\Desktop\\milestone2-group\\dvdrental\\dvdrental\\wwwroot\\uploads\\a5e2dbf0-e73d-4121-a37e-7ac0562816e6.png",
+      "Identity": "D:\\Projects\\21-10-2024_GroupPro\\milestone2-group\\dvdrental\\dvdrental\\wwwroot\\uploads\\6a68c06a-af1c-4f31-bb42-b471f4bb6988.jpg",
       "SourceId": "dvdrental",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\UT01141\\Desktop\\milestone2-group\\dvdrental\\dvdrental\\wwwroot\\",
+      "ContentRoot": "D:\\Projects\\21-10-2024_GroupPro\\milestone2-group\\dvdrental\\dvdrental\\wwwroot\\",
+      "BasePath": "_content/dvdrental",
+      "RelativePath": "uploads/6a68c06a-af1c-4f31-bb42-b471f4bb6988.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\6a68c06a-af1c-4f31-bb42-b471f4bb6988.jpg"
+    },
+    {
+      "Identity": "D:\\Projects\\21-10-2024_GroupPro\\milestone2-group\\dvdrental\\dvdrental\\wwwroot\\uploads\\a5e2dbf0-e73d-4121-a37e-7ac0562816e6.png",
+      "SourceId": "dvdrental",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Projects\\21-10-2024_GroupPro\\milestone2-group\\dvdrental\\dvdrental\\wwwroot\\",
       "BasePath": "_content/dvdrental",
       "RelativePath": "uploads/a5e2dbf0-e73d-4121-a37e-7ac0562816e6.png",
       "AssetKind": "All",
@@ -74,10 +112,10 @@
       "OriginalItemSpec": "wwwroot\\uploads\\a5e2dbf0-e73d-4121-a37e-7ac0562816e6.png"
     },
     {
-      "Identity": "C:\\Users\\UT01141\\Desktop\\milestone2-group\\dvdrental\\dvdrental\\wwwroot\\uploads\\c57811f5-eb81-4180-8624-3dfbd4e11c26.png",
+      "Identity": "D:\\Projects\\21-10-2024_GroupPro\\milestone2-group\\dvdrental\\dvdrental\\wwwroot\\uploads\\c57811f5-eb81-4180-8624-3dfbd4e11c26.png",
       "SourceId": "dvdrental",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\UT01141\\Desktop\\milestone2-group\\dvdrental\\dvdrental\\wwwroot\\",
+      "ContentRoot": "D:\\Projects\\21-10-2024_GroupPro\\milestone2-group\\dvdrental\\dvdrental\\wwwroot\\",
       "BasePath": "_content/dvdrental",
       "RelativePath": "uploads/c57811f5-eb81-4180-8624-3dfbd4e11c26.png",
       "AssetKind": "All",

@@ -26,8 +26,8 @@ namespace dvdrental
             builder.Services.AddScoped<ICustomerRepository>(provider => new CustomerRepository(connectionSting));
             builder.Services.AddSingleton<ICustomerService>(provider => new CustomerService(provider.GetRequiredService<ICustomerRepository>()));
 
-            builder.Services.AddSingleton<IRentalRequestRepository>(provider => new RentalRequestRepository(connectionSting));
-            builder.Services.AddSingleton<IRentalRequestService>(provider => new RentalrequestService(provider.GetRequiredService<IRentalRequestRepository>()));
+            //builder.Services.AddSingleton<IRentalRequestRepository>(provider => new RentalRequestRepository());
+            //builder.Services.AddSingleton<IRentalRequestService>(provider => new RentalRequestService(provider.GetRequiredService<IRentalRequestRepository>()));
 
             builder.Services.AddScoped<ICategoryRepository>(provider => new CategoryRepository(connectionSting));
             builder.Services.AddSingleton<ICategoryService>(provider => new CategoryService(provider.GetRequiredService<ICategoryRepository>()));
@@ -47,8 +47,12 @@ namespace dvdrental
             builder.Services.AddScoped<ICustomerService, CustomerService>();
             builder.Services.AddScoped<ICategoryService, CategoryService>();
             builder.Services.AddScoped<IMoviesService, MovieService>();
-          
-            builder.Services.AddScoped<IRentalRequestService, RentalrequestService>();
+
+            builder.Services.AddScoped<IRentalRequestRepository, RentalRequestRepository>();
+            builder.Services.AddScoped<IRentalRequestService, RentalRequestService>();
+
+
+            builder.Configuration.AddJsonFile("appsettings.json", optional: false, reloadOnChange: true);
 
             var app = builder.Build();
 

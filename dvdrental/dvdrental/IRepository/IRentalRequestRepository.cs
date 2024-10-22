@@ -6,8 +6,9 @@ namespace dvdrental.IRepository
 
     public interface IRentalRequestRepository
     {
-        Task<RentalRequest> AddRentalRequest(RentalRequest rentalRequest);
-        Task<IEnumerable<RentalRequest>> GetAllRentalRequests();
+        Task<IEnumerable<RentalRequest>> GetAllRental();
+        Task<RentalRequest> GetByIdRentalRequest(int id);
+        Task<int> AddRentalRequest(RentalRequest rentalRequest);
 
 
     }

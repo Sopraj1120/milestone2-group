@@ -8,13 +8,13 @@
 
         public int CustomerId { get; set; }
 
-        public string RentDate { get; set; }
-        public string ReturnDate { get; set; }
+        public DateTime RentDate { get; set; } 
+        public DateTime ReturnDate { get; set; }
 
         public int MovieAvailableCopies { get; set; }
 
-        public string ImagePath { get; set; }
-        public string MovieImageType { get; set; }
+        public string ? ImagePath { get; set; }
+        public string ? MovieImageType { get; set; }
 
         public RentalStatus Status { get; set; } = RentalStatus.Pending;
         public IFormFile? imagefile { get; set; }
@@ -27,8 +27,8 @@
             Rejected,
             Returned
         }
-        public Movies Movie { get; set; }
-        public Customer Customer { get; set; }
+        public Movies ? Movie { get; set; }
+        public Customer ? Customer { get; set; }
 
        
      
