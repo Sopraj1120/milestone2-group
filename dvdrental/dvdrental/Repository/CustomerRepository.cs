@@ -82,6 +82,7 @@ namespace dvdrental.Repository
                                     Id = reader.GetInt32(reader.GetOrdinal("Id")),
                                     FirstName = reader.GetString(reader.GetOrdinal("FirstName")),
                                     LastName = reader.GetString(reader.GetOrdinal("LastName")),
+                                    Password = reader.GetString(reader.GetOrdinal("Password")),
                                     Address = reader.GetString(reader.GetOrdinal("Address")),
                                     Email = reader.GetString(reader.GetOrdinal("Email")),
                                     MobileNo = reader.GetString(reader.GetOrdinal("MobileNo")),

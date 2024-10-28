@@ -6,5 +6,6 @@ namespace dvdrental.IService
     public interface IAdminService
     {
         Task<AdminResponceDto> CreateAdminAsync(AdminRequestDto requestDto);
+        Task<List<AdminResponceDto>> GetAllAdmins();
     }
 }

@@ -42,5 +42,15 @@ namespace dvdrental.Controllers
                 return StatusCode(500, "An unexpected error occurred while creating the admin.");
             }
         }
+
+        [HttpGet]
+        [Route("GetAll")]
+
+        public async Task<IActionResult> GetAllAdmins()
+        {
+            var data = _adminService.GetAllAdmins();
+
+            return Ok(data);
+        }
     }
 }

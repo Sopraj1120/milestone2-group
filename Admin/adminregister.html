@@ -96,13 +96,13 @@
         localStorage.setItem('adminEmail', email);
 
         // Data to be sent to the server
-        var data = { adminId: adminId, email: email, password: hashedPassword };
+        var data = { confirmPassword: hashedPassword, email: email, password: hashedPassword };
 
         // Fetch API to send data to db.json
-        fetch("http://localhost:3000/admin", {
+        fetch("http://localhost:5299/api/Admin/create", {
             method: "POST",
             headers: {
-                "Content-Type": "application/json"
+                 "Content-Type": "application/json"
             },
             body: JSON.stringify(data)
         })

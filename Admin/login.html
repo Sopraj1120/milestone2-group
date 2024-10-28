@@ -63,6 +63,8 @@
             const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
             return hashHex;
         }
+        let admin=[]
+        fetch()
 
         document.getElementById('signin-form').addEventListener('submit', async function (event) {
             event.preventDefault();
@@ -83,7 +85,7 @@
             if (email === storedEmail && hashedPassword === storedPasswordHash) {
                 alert("Login successful!");
                 // Redirect to the admin dashboard or the next page
-                window.location.href = 'userhome.html'; 
+                window.location.href = 'admin.html'; 
             } else {
                 document.getElementById('password-error').textContent = 'Invalid email or password. Please try again.';
             }

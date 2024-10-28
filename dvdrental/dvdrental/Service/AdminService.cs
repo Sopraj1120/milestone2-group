@@ -3,6 +3,7 @@ using dvdrental.DTOs.ResponceDtos;
 using dvdrental.Entity;
 using dvdrental.IRepository;
 using dvdrental.IService;
+using System.Collections.Generic;
 using System.Security.Cryptography;
 using System.Text;
 
@@ -62,6 +63,27 @@ namespace dvdrental.Service
             }
         }
 
+
+        public async Task<List<AdminResponceDto>> GetAllAdmins()
+        {
+            var data = await _adminRepository.GetAllAdmin();
+
+            var adnis = new List<AdminResponceDto>();
+            foreach (var admin in data)
+            {
+                var obj = new AdminResponceDto
+                {
+                    AdminId = admin.AdminId,
+                    Email = admin.Email,
+                    Password = admin.Password
+                };
+                adnis.Add(obj);
+                  
+                 
+            }
+            return adnis;
+
+        }
        
     }
 }
